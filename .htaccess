@@ -22,7 +22,9 @@ RewriteRule ^request/([^/\.]+)/$ lib/request-handler.php?function=$1 [L]
 #Pages
 #------------------------
 
-RewriteRule ^status-board$ status-board.php [L]
+RewriteRule ^home$ home.php [L]
+RewriteRule ^add$ add.php [L]
+RewriteRule ^edit/([0-9]+)$ edit.php?ID=$1 [L]
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------
 #DO NOT EDIT BELOW THIS LINE Adding cache features, speed up the website...----------------------------------------------------------------------------------------------------------------------------------

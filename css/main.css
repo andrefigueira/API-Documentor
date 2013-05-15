@@ -3,10 +3,11 @@
 body, html {
 	padding: 0;
 	margin: 0;
+	background: #FFF url(images/bg.png) repeat-y left;
+	font-family: 'Open Sans', sans-serif;
 }
 
-body {
-	font-family: 'Lato', sans-serif;
+body.login {
 	background: #DEDEDE;
 }
 
@@ -25,14 +26,24 @@ ul {
 
 :focus { outline:none;}
 
+label { display: block; margin: 20px 0 10px 0;}
+
 input {
 	display: block;
 	border: none;
 	font-size: 14px;
 	padding: 10px;
 	width: 300px;
-	margin: 0;
+	margin: 0 0 10px 0;
 }
+
+select { 
+	display: block; 
+	margin: 10px 0;
+	padding: 10px;
+}
+
+input[type=checkbox] { display: none;}
 
 input[type=submit] {
 	background: #80C579;
@@ -43,17 +54,31 @@ input[type=submit] {
 }
 
 .full-overlay {
-	position:fixed;
-	top:0;
-	left:0;
-	background:#FFF;
-	width:100%;
-	height:100%;
-	z-index:50;
-	opacity:0.5;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: #FFF;
+	width: 100%;
+	height: 100%;
+	z-index: 50;
+	opacity: 0.5;
 }
 
 .clear { clear:both;}
+
+#alert {
+	display: none;
+	background: #FDCD2B;
+	color: #735020;
+	padding: 10px;
+	width: 20%;
+	text-align: center;
+	border-radius: 4px;
+	position: absolute;
+	top: 35px;
+	right: 20px;
+	font-size: 13px;
+}
 
 .php-error {
 	
@@ -125,6 +150,7 @@ form.login {
 		font-weight: normal;
 		color: #FFF;
 		text-align: center;
+		font-family: 'Lato', sans-serif;
 	}
 
 	form.login input[type=text], form.login input[type=password] {
@@ -195,10 +221,70 @@ header.masthead {
 				}
 
 .container {
-	padding: 20px;
+	height: auto;
+	min-height: 100%;
 }
 
-.wrapper { min-width: 800px; max-width: 1320px; margin: 0 auto;}
+#sidebar {
+	width: 300px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+	#sidebar a.logo {
+		display: block;
+		text-transform: uppercase;
+		color: #FFF;
+		padding: 30px;
+		font-weight: bold;
+		font-family: 'Lato', sans-serif;
+		font-weight: 300;
+	}
+
+	#sidebar nav {
+		display: block;
+		height: 200px;
+	}
+	
+		#sidebar nav ul {
+			display: block;
+			margin: 0;
+			padding: 0;
+		}
+	
+			#sidebar nav ul li {
+				display: block;
+			}
+		
+				#sidebar nav a {
+					display: block;
+					margin: 0 0 0 20px;
+					color: #FFF;
+					padding: 10px;
+				}
+
+	#sidebar footer {
+		color: #FFF;
+		padding: 40px;
+	}
+	
+.none {
+	padding: 40px 0;
+}
+	
+#content {
+	margin-left: 300px;
+	padding: 40px;
+	font-size: 14px;
+}
+
+	#content .title { 
+		padding: 40px;
+		margin: -40px 0 20px -40px;
+		border-bottom: 1px solid #EEE;
+		font-size: 22px;
+	}
 
 .sub-header {
 	background: #FFF;
@@ -244,6 +330,7 @@ header.masthead {
 				
 table.standard-table {
 	background: #FFF;
+	border: 1px solid #EEE;
 }
 
 	table.standard-table th {
@@ -270,4 +357,202 @@ table.standard-table {
 	height: 400px;
 }
 
+.method {
+	display: inline-block;
+	background: #FED53C;
+	padding: 5px 10px;
+	border-radius: 2px;
+	color: #B4811D;
+	font-family: Monaco;
+	font-family: 11px;
+}
+
+.uri {
+	display: inline-block;
+	background: #EEE;
+	padding: 5px 10px;
+	border-radius: 2px;
+	color: #999;
+	font-family: Monaco;
+	font-family: 11px;
+}
+
+.button {
+	display: inline-block;
+	margin: 0 0 0 10px;
+	background: #AAA;
+	color: #FFF;
+	padding: 10px 20px;
+	float: right;
+	border-radius: 2px;
+	height: 20px;
+}
+
+	.button.delete {
+		background:#D64D3C url(images/trash.png) no-repeat;
+		background-size: 60%;
+		background-position: center center;
+	}
+
+	.button.edit {
+		background:#AAA url(images/edit.png) no-repeat;
+		background-size: 60%;
+		background-position: center center;
+	}
+
+.checkbox {
+	display: inline-block;
+	padding: 5px;
+	background: #FFF;
+	cursor: pointer;
+	width: 310px;
+}
+
+	.checkbox span {
+		display: inline-block;
+		background: #444;
+		padding: 5px 10px;
+		border-radius: 2px;
+		color: #FFF;
+		margin: 0 10px 0 0;
+	}
+	
+.inside-form input {
+	width: 400px;
+	border: 1px solid #DDD;
+	border-radius: 2px;
+}
+	
+	.inside-form input:hover { border: 1px solid #AAA;}
+	.inside-form input:focus {
+		border: 1px solid #AAA;
+		box-shadow:0 0 2px #AAA;
+	}
+	
+.inside-form input[type=submit], .inside-form input[type=button] {
+	width: auto;
+	margin: 10px 0 0 0;
+	float: none;
+	border: none;
+}
+
+.normal-label { margin: 10px 0 0 0;}
+
+code.example {
+	display: inline-block;
+	width: 90%;
+	font-family: Monaco;
+	background: #FFF;
+	color: #999;
+	padding: 10px;
+	margin: 10px 0;
+	font-size: 13px;
+	min-height: 200px;
+	max-height: 400px;
+	overflow-y: scroll;
+	border: 1px solid #DDD;
+}
+
+	code.example:hover { border-color: #AAA;}
+	code.example:focus { 
+		border-color: #AAA;
+		box-shadow:0 0 2px #AAA;
+	}
+
+footer {
+	font-size: 11px;
+}
+
 /* END MAIN STYLES */
+
+label { cursor:pointer;}
+
+.cField {
+	display:inline-block!important;
+	color:#777;
+	width:421px;
+	background:#FFF;
+	font-size: 13px;
+	margin:0 0 0 0;
+	position: relative;
+	z-index: 100;
+	border: 1px solid #DDD;
+}
+
+	.cField:hover { border-color: #AAA;}
+
+	.cField span.label { display:block; float:left; padding:10px;}
+	
+	.cField span.cFieldArrow {
+		display:block;
+		background:url(images/arrow.png) center no-repeat;
+		float:right;
+		height:36px;
+		width:30px!important;
+		margin:0;
+	}
+
+ul.cFieldLists {
+	display:none;
+	margin:-4px 0 0 0!important;
+	padding:0;
+	position:absolute;
+	color:#777;
+	font-size:13px;
+	background:#FFF;
+	border:1px solid #E3E5E3;
+	border-radius:2px;
+	-o-border-radius:2px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	width:241px;
+	max-height:200px;
+	overflow-y:scroll;
+	z-index:101;
+	border-top:none;
+	width: 421px;
+}
+
+	ul.cFieldLists li { display: block; padding:10px;}
+		ul.cFieldLists li:hover { background:#F9F9F9; cursor:pointer;}
+		
+a.cFieldCheckbox {
+	display:inline-block!important;
+	padding:0!important;
+	margin:0 5px -2px 0!important;
+	width:16px!important;
+	height:16px!important;
+	opacity:0.4;
+	background:url(images/unchecked.png) bottom no-repeat;
+}
+		
+	a.cFieldCheckboxChecked { background:url(images/checked.png) no-repeat;}
+
+span.cFieldFileLabel {
+	float:block;
+	padding:0 0 0 75px;
+	float:left;
+	margin:7px 0 10px 0;
+	font-size:11px;
+}
+
+a.cFieldFile {
+	display:inline-block;
+	padding:8px 20px;
+	color:#777;
+	font-size:13px;
+	background:#E9E9E9;
+	border:1px solid #D9D9D9;
+	border-radius:2px;
+	-o-border-radius:2px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	text-decoration:none;
+}
+
+	a.cFieldFile:hover { background:#E1E1E1;}
+
+	.fakeFileName {
+		font-size:13px;
+		margin:0 0 0 10px;
+	}

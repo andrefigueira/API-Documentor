@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>cFields, Customisable HTML Fields, jQuery Plugin</title>
+	<link rel="stylesheet" href="style/style.css" />
+	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Syncopate:400,700' rel='stylesheet' type='text/css'>
+	<script src="scripts/cFields.1.0.js"></script>
+	<script>
+		
+		$(document).ready(function(){
+			
+			$('input[type=checkbox]').cFields({label:true});
+			$('input[type=file]').cFields({label:true});
+			$('select').cFields({label:true});
+			
+		});
+		
+	</script>
+</head>
+<body>
+		
+	<h1>cFields 1.0</h1>
+	
+	<div class="container">
+		
+		<p class="intro">A lightweight plugin that allows you to have more control over the design of Selects and checkboxes.</p>
+		
+		<div class="subContainer">
+		
+			<h2>Usage</h2>
+			
+			<p>Using cFields is easy, all you do is include the cFields file, 
+			add the CSS to yours, the add the function call on your javascript 
+			file or in your head, you can use it to highly customise selects and checkboxes.</p>
+			
+			<pre>
+$(document).ready(function(){
+	
+	$('#network').cFields({label:true});
+	
+});</pre>
+						
+			<h2>Preview</h2>
+			
+			<select name="network" id="network">
+				<option>Twitter</option>		
+				<option>Facebook</option>
+				<option>Holla@Me</option>
+			</select>
+			
+			<div class="clear"></div>
+			
+			<select name="country" id="country">
+				<option>Portugal</option>		
+				<option>England</option>
+				<option>USA</option>
+			</select>
+			
+			<div class="clear"></div>
+			
+			<label for="checkbox"><input type="checkbox" name="checkbox" id="checkbox" /> This is a checkbox</label>
+			
+			<div class="clear"></div>
+			
+			<label for="checkbox2"><input type="checkbox" name="checkbox2" id="checkbox2" /> This is a another checkbox</label>
+			
+			<div class="clear"></div>
+			
+			<input type="file" name="file" id="file" />
+			
+			<div class="clear"></div>
+			
+			<input type="file" name="file2" id="file2" />
+			
+			<div class="clear"></div>
+		
+		</div><!-- End sub container -->
+		
+	</div><!-- End container -->
+	
+</body>
+</html>

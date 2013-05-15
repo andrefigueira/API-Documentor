@@ -7,7 +7,7 @@ ob_start();
 session_start();
 
 //Set a custom error handler, just because...
-set_error_handler('error_handler', E_ALL);
+set_error_handler('errorHandler', E_ALL);
 
 //Set the server default timezone
 date_default_timezone_set('Europe/London');
@@ -19,11 +19,17 @@ define('BASE_URL', 'https://staging.hollatme.com/dashboard/api/');
 define('VERSION', '0.1');
 
 //If debug if true, then if there are errors, they'll be displayed
-define('DEBUG', false);
+define('DEBUG', true);
 
 //User details for access to the service
-define('USERNAME', 'andrefigueira');
-define('PASSWORD', 'lolipop=1989');
+define('USERNAME', 'admin');
+define('PASSWORD', 'pass');
+
+//Db details
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'APIDocumentor');
+define('DB_USER', 'APIDocumentorUse');
+define('DB_PASS', '94Q7Z481L8u1B0N');
 
 //Memcache details
 //Set this to your details...

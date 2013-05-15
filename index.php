@@ -7,9 +7,9 @@
 	<link href="css/main.css" rel="stylesheet" type="text/css" />
 	<link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body class="login">
 
-	<?php notification(); ?>
+	<?php General::notification(); ?>
 
 	<form class="login" action="request/login/" method="post">
 	
