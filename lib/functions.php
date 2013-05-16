@@ -109,6 +109,15 @@ function create()
 
 }
 
+function createUser()
+{
+
+	$user = new User();
+	
+	$user->newUser();
+
+}
+
 function save()
 {
 
@@ -118,12 +127,30 @@ function save()
 
 }
 
+function saveUser()
+{
+
+	$user = new User();
+	
+	$user->saveUser();
+
+}
+
 function delete()
 {
 
 	$doc = new Documentor();
 	
 	$doc->deleteDocumentation();
+
+}
+
+function deleteUser()
+{
+
+	$user = new User();
+	
+	$user->deleteUser();
 
 }
 

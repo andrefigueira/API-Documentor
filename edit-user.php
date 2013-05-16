@@ -49,7 +49,7 @@
 		
 			<div class="title">Edit User &raquo; <?php echo $data['username']; ?></div>
 		
-			<form id="edit-user" class="inside-form" method="post">
+			<form id="save-user" class="inside-form" method="post">
 			
 				<label for="username">Username</label>	
 				<input type="text" name="username" id="username" placeholder="e.g. phprulezwithacapitalp89" value="<?php echo $data['username']; ?>" autocomplete="off" />

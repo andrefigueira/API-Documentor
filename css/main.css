@@ -65,7 +65,13 @@ input[type=submit], input[type=button] {
 	width: auto;
 	padding: 10px 30px;
 	cursor: pointer;
+	-webkit-transition:background 0.1s ease-in;
+   -moz-transition:background 0.1s ease-in;
+   -o-transition:background 0.1s ease-in;
+   transition:background 0.1s ease-in;
 }
+
+	input[type=submit]:hover, input[type=button]:hover { background-color: #98D591;}
 
 .full-overlay {
 	position: fixed;
@@ -247,7 +253,7 @@ header.masthead {
 
 #sidebar {
 	width: 300px;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 }
@@ -286,7 +292,7 @@ header.masthead {
 
 	#sidebar footer {
 		color: #FFF;
-		padding: 40px;
+		padding: 30px;
 	}
 	
 .none {
@@ -406,13 +412,22 @@ table.standard-table {
 	float: right;
 	border-radius: 2px;
 	height: 20px;
+	opacity: 0.8;
+	-webkit-transition:opacity 0.2s ease-in;
+   -moz-transition:opacity 0.2s ease-in;
+   -o-transition:opacity 0.2s ease-in;
+   transition:opacity 0.2s ease-in;
 }
 
-	.button.delete {
+	.button:hover { opacity:1;}
+
+	.button.delete, .button.delete-user {
 		background:#D64D3C url(images/trash.png) no-repeat;
 		background-size: 60%;
 		background-position: center center;
 	}
+
+	.button.disabled { opacity: 0.4;}
 
 	.button.edit {
 		background:#AAA url(images/edit.png) no-repeat;

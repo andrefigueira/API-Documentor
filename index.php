@@ -1,4 +1,4 @@
-<?php require_once('lib/functions.php'); ?>
+<?php require_once('lib/functions.php'); User::logout(); ?>
 <!DOCTYPE html>
 <html>
 <head>

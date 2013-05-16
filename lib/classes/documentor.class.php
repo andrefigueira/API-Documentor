@@ -118,10 +118,7 @@ class Documentor extends General
 			'parameters' => $parameters
 		));
 		
-		$this->jsonReply(array(
-			'success' => true,
-			'message' => 'Documentation saved'
-		));
+		$this->jsonReply(true, 'Documentation saved');
 		
 		$this->setNotification('Updated new page of documentation');
 		
@@ -267,10 +264,7 @@ class Documentor extends General
 		
 		$this->delete($ID);
 		
-		$this->jsonReply(array(
-			'success' => true,
-			'message' => 'Documentation deleted'
-		));
+		$this->jsonReply(true, 'Documentation deleted');
 		
 		$this->setNotification('Deleted documentation');
 		

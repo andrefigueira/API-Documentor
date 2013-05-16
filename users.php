@@ -60,7 +60,7 @@
 							<td><?php echo $realUser['email']; ?></td>
 							<td><?php echo General::formatDate($realUser['addedDate']); ?></td>
 							<td>
-								<a href="javascript:{}" data-id="<?php echo $realUser['ID']; ?>" class="delete button"></a>
+								<a href="javascript:{}" data-id="<?php echo $realUser['ID']; ?>" class="delete-user <?php if($realUser['username'] == $_SESSION['user']['username']){ echo 'disabled';} ?> button"></a>
 								<a href="edit-user/<?php echo $realUser['ID']; ?>" class="button edit"></a>
 							</td>
 						</tr>

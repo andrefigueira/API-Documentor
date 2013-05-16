@@ -44,6 +44,53 @@ $(document).ready(function(){
 		
 	});
 	
+	$('.delete-user').click(function(){
+		
+		if(!$(this).hasClass('disabled'))
+		{
+		
+			var id = $(this).data('id');
+		
+			if(isNaN(id)){ alert('Ohhh no you don\'t!');}
+			
+			var deleteDocumentation = confirm('Delete this user?');
+			
+			if(deleteDocumentation)
+			{
+		
+				var ajaxURL = BASE_URL + 'request/deleteUser/';
+			
+				$.ajax({
+		 			type: 'POST',
+					url: ajaxURL,
+					data: { 
+						ID: id
+					},
+					dataType: 'json',
+					success: function(data){
+					
+						if(data.success)
+						{
+						
+							window.location = BASE_URL + 'users';
+							
+						}
+						else
+						{
+							
+							alert(data.message);
+							
+						}
+					
+					}
+				});
+					
+			}
+		
+		}
+		
+	});
+	
 	$('#add-parameter').click(function(){
 	
 		var ID = $('.parameter-group').size();
@@ -191,6 +238,92 @@ $(document).ready(function(){
 				{
 				
 					window.location = BASE_URL + 'home';
+					
+				}
+				else
+				{
+					
+					alert(data.message);
+					
+				}
+			
+			}
+		});
+		
+    	return false;
+	
+	});
+	
+	$('#create-user').submit(function(e){
+	
+		e.preventDefault();
+	
+		var ajaxURL = BASE_URL + 'request/createUser/';
+		
+		var username = getVal('username', 'input');
+		var email = getVal('email', 'input');
+		var password = getVal('password', 'input');
+		var confirmPassword = getVal('confirm-password', 'input');
+		
+		$.ajax({
+ 			type: 'POST',
+			url: ajaxURL,
+			data: { 
+				username: username,
+				email: email,
+				password: password,
+				confirmPassword: confirmPassword
+			},
+			dataType: 'json',
+			success: function(data){
+			
+				if(data.success)
+				{
+				
+					window.location = BASE_URL + 'users';
+					
+				}
+				else
+				{
+					
+					alert(data.message);
+					
+				}
+			
+			}
+		});
+		
+    	return false;
+	
+	});
+	
+	$('#save-user').submit(function(e){
+	
+		e.preventDefault();
+	
+		var ajaxURL = BASE_URL + 'request/saveUser/';
+		
+		var username = getVal('username', 'input');
+		var email = getVal('email', 'input');
+		var password = getVal('password', 'input');
+		var confirmPassword = getVal('confirm-password', 'input');
+		
+		$.ajax({
+ 			type: 'POST',
+			url: ajaxURL,
+			data: { 
+				username: username,
+				email: email,
+				password: password,
+				confirmPassword: confirmPassword
+			},
+			dataType: 'json',
+			success: function(data){
+			
+				if(data.success)
+				{
+				
+					window.location = BASE_URL + 'edit-user/' + ID;
 					
 				}
 				else
