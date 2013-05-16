@@ -23,8 +23,11 @@ RewriteRule ^request/([^/\.]+)/$ lib/request-handler.php?function=$1 [L]
 #------------------------
 
 RewriteRule ^home$ home.php [L]
+RewriteRule ^users$ users.php [L]
 RewriteRule ^add$ add.php [L]
+RewriteRule ^add-user$ add-user.php [L]
 RewriteRule ^edit/([0-9]+)$ edit.php?ID=$1 [L]
+RewriteRule ^edit-user/([0-9]+)$ edit-user.php?ID=$1 [L]
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------
 #DO NOT EDIT BELOW THIS LINE Adding cache features, speed up the website...----------------------------------------------------------------------------------------------------------------------------------

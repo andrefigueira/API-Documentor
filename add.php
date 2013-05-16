@@ -1,4 +1,4 @@
-<?php require_once('lib/functions.php'); ?>
+<?php require_once('lib/functions.php'); General::validateSession(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,6 +56,34 @@
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</select>
+				
+				<div class="normal-label">Parameters &middot; <span class="show-hide" title="Show">Hide</span></div>
+				<div class="parameters">
+				
+					<div class="clear"></div>
+					
+					<div class="parameter-group">
+			
+						<label for="parameter-0-name">Name</label>	
+						<input type="text" name="parameter-0-name" id="parameter-0-name" placeholder="e.g. includeUsers" autocomplete="off" />
+									
+						<label for="parameter-0-example">Example</label>	
+						<input type="text" name="parameter-0-example" id="parameter-0-example" placeholder="e.g. true or 354" autocomplete="off" />
+									
+						<label for="parameter-0-description">Description</label>	
+						<input type="text" name="parameter-0-description" id="parameter-0-description" placeholder="e.g. This call fetches users" autocomplete="off" />
+					
+						<label for="parameter-0-optional">Optional</label>	
+						<select name="parameter-0-optional" id="parameter-0-optional">
+							<option value="0">No</option>
+							<option value="1">Yes</option>
+						</select>
+					
+					</div><!-- End parameter group -->
+					
+				</div><!-- End parameters -->
+				
+				<input type="button" id="add-parameter" name="add-parameter" value="Add Parameter" />
 				
 				<div class="normal-label">Example Request</div>
 				<code contenteditable="true" class="example" id="request"></code>

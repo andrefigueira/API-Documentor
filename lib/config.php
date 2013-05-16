@@ -1,10 +1,10 @@
 <?php
 
-//Start the output buffer
-ob_start();
-
 //Start the session yo...
 session_start();
+
+//Start the output buffer
+ob_start();
 
 //Set a custom error handler, just because...
 set_error_handler('errorHandler', E_ALL);

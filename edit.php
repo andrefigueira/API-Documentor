@@ -1,4 +1,4 @@
-<?php require_once('lib/functions.php'); ?>
+<?php require_once('lib/functions.php'); General::validateSession(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +13,9 @@
 	<script>
 	
 	$(document).ready(function(){
-		
+	
 		$('select').cFields({label:true});
+		
 		$('input[type=checkbox]').cFields({label:true});
 		
 	});
@@ -30,6 +31,8 @@
 	$doc = new Documentor();
 	
 	$data = $doc->fetchDocumentation();
+	
+	if($data['parameters'] == ''){ $data['parameters'] = array();}
 		
 	?>
 	
@@ -63,19 +66,74 @@
 				
 				<label for="method">Method</label>			
 				<select name="method" id="method">
-					<option value="<?php echo $data['method']; ?>"><?php echo $doc->methodName($data['method']); ?></option>
-					<option value="0">GET</option>
-					<option value="1">POST</option>
-					<option value="2">DELETE</option>
-					<option value="3">PUT</option>
+					<option <?php if($data['method'] == 0){ echo 'selected="selected"';} ?> value="0">GET</option>
+					<option <?php if($data['method'] == 1){ echo 'selected="selected"';} ?> value="1">POST</option>
+					<option <?php if($data['method'] == 2){ echo 'selected="selected"';} ?> value="2">DELETE</option>
+					<option <?php if($data['method'] == 3){ echo 'selected="selected"';} ?> value="3">PUT</option>
 				</select>
 				
 				<label for="auth">Authorisation Required</label>	
 				<select name="auth" id="auth">
-					<option value="<?php echo $data['auth']; ?>"><?php if($data['auth'] == 0){ echo 'No';}else{ echo 'Yes';} ?></option>
-					<option value="0">No</option>
-					<option value="1">Yes</option>
+					<option <?php if($data['auth'] == 0){ echo 'selected="selected"';} ?> value="0">No</option>
+					<option <?php if($data['auth'] == 1){ echo 'selected="selected"';} ?> value="1">Yes</option>
 				</select>
+				
+				<div class="normal-label">Parameters &middot; <span class="show-hide" title="Show">Hide</span></div>
+				<div class="parameters">
+				
+					<div class="clear"></div>
+					
+					<?php if(count($data['parameters']) > 0){ ?>
+					
+						<?php $count = 0; foreach($data['parameters'] as $parameter){ ?>
+					
+							<div class="parameter-group">
+					
+								<label for="parameter-<?php echo $count; ?>-name">Name</label>	
+								<input type="text" name="parameter-<?php echo $count; ?>-name" id="parameter-<?php echo $count; ?>-name" placeholder="e.g. includeUsers" value="<?php echo $parameter['name']; ?>" autocomplete="off" />
+											
+								<label for="parameter-<?php echo $count; ?>-example">Example</label>	
+								<input type="text" name="parameter-<?php echo $count; ?>-example" id="parameter-<?php echo $count; ?>-example" placeholder="e.g. true or 354" value="<?php echo $parameter['example']; ?>" autocomplete="off" />
+											
+								<label for="parameter-<?php echo $count; ?>-description">Description</label>	
+								<input type="text" name="parameter-<?php echo $count; ?>-description" id="parameter-<?php echo $count; ?>-description" placeholder="e.g. This call fetches users" value="<?php echo $parameter['description']; ?>" autocomplete="off" />
+							
+								<label for="parameter-<?php echo $count; ?>-optional">Optional</label>	
+								<select name="parameter-<?php echo $count; ?>-optional" id="parameter-<?php echo $count; ?>-optional">
+									<option <?php if($parameter['optional'] == 0){ echo 'selected="selected"';} ?> value="0">No</option>
+									<option <?php if($parameter['optional'] == 1){ echo 'selected="selected"';} ?> value="1">Yes</option>
+								</select>
+							
+							</div><!-- End parameter group -->
+						
+						<?php $count++; } ?>
+					
+					<?php }else{ ?>
+					
+						<div class="parameter-group">
+				
+							<label for="parameter-0-name">Name</label>	
+							<input type="text" name="parameter-0-name" id="parameter-0-name" placeholder="e.g. includeUsers" autocomplete="off" />
+										
+							<label for="parameter-0-example">Example</label>	
+							<input type="text" name="parameter-0-example" id="parameter-0-example" placeholder="e.g. true or 354" autocomplete="off" />
+										
+							<label for="parameter-0-description">Description</label>	
+							<input type="text" name="parameter-0-description" id="parameter-0-description" placeholder="e.g. This call fetches users" autocomplete="off" />
+						
+							<label for="parameter-0-optional">Optional</label>	
+							<select name="parameter-0-optional" id="parameter-0-optional">
+								<option value="0">No</option>
+								<option value="1">Yes</option>
+							</select>
+						
+						</div><!-- End parameter group -->
+					
+					<?php } ?>
+					
+				</div><!-- End parameters -->
+				
+				<input type="button" id="add-parameter" name="add-parameter" value="Add Parameter" />
 				
 				<div class="normal-label">Example Request</div>
 				<code contenteditable="true" class="example" id="request"><?php echo $data['request']; ?></code>

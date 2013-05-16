@@ -74,6 +74,7 @@ class Documentor extends General
 					'uri' => stripslashes($row->uri),
 					'method' => stripslashes($row->method),
 					'auth' => $row->auth,
+					'parameters' => $this->unserialize64($row->parameters),
 					'request' => stripslashes($row->request),
 					'response' => stripslashes($row->response),
 					'addedDate' => $row->addedDate,
@@ -98,6 +99,7 @@ class Documentor extends General
 		$auth = $this->getVar('post', 'auth');
 		$request = $this->getVar('post', 'request');
 		$response = $this->getVar('post', 'response');
+		$parameters = $this->getVar('post', 'parameters', false);
 
 		if(!is_numeric($ID)){ $this->jsonReply(false, 'Oh no, Don\'t you do it!');}
 		if($name == ''){ $this->jsonReply(false, 'Enter a name for the call');}
@@ -112,7 +114,8 @@ class Documentor extends General
 			'method' => $method,
 			'auth' => $auth,
 			'request' => $request,
-			'response' => $response
+			'response' => $response,
+			'parameters' => $parameters
 		));
 		
 		$this->jsonReply(array(
@@ -133,6 +136,7 @@ class Documentor extends General
 		$auth = $this->getVar('post', 'auth');
 		$request = $this->getVar('post', 'request');
 		$response = $this->getVar('post', 'response');
+		$parameters = $this->getVar('post', 'parameters', false);
 
 		if($name == ''){ $this->jsonReply(false, 'Enter a name for the call');}
 		if($uri == ''){ $this->jsonReply(false, 'Enter a URI for the call');}
@@ -145,15 +149,13 @@ class Documentor extends General
 			'method' => $method,
 			'auth' => $auth,
 			'request' => $request,
-			'response' => $response
-		));
-		
-		$this->jsonReply(array(
-			'success' => true,
-			'message' => 'Documentation created'
+			'response' => $response,
+			'parameters' => $parameters
 		));
 		
 		$this->setNotification('Created new page of documentation');
+		
+		$this->jsonReply(true, 'Documentation created');
 		
 	}
 	
@@ -173,6 +175,7 @@ class Documentor extends General
 		auth = "'.$auth.'",
 		request = "'.$request.'",
 		response = "'.$response.'",
+		parameters = "'.$this->serialize64($parameters).'",
 		editedDate = "'.$this->datetime().'"
 		WHERE ID = "'.$ID.'"
 		');
@@ -199,6 +202,7 @@ class Documentor extends General
 		auth,
 		request,
 		response,
+		parameters,
 		addedDate
 		)
 		VALUES
@@ -209,13 +213,32 @@ class Documentor extends General
 		"'.$auth.'",
 		"'.$request.'",
 		"'.$response.'",
+		"'.$this->serialize64($parameters).'",
 		"'.$this->datetime().'"
 		)
 		');
 		
 		$this->handleResult($result);
 		
-		return true;
+	}
+	
+	public function serialize64($array)
+	{
+		
+		$array = serialize($array);
+		$array = base64_encode($array);
+		
+		return $array;
+		
+	}
+	
+	public function unserialize64($array)
+	{
+		
+		$array = base64_decode($array);
+		$array = unserialize($array);
+		
+		return $array;
 		
 	}
 	
@@ -276,13 +299,6 @@ class Documentor extends General
 				break;
 			
 		}
-		
-	}
-	
-	public function formatDate($date)
-	{
-		
-		return date('D jS F, Y', strtotime($date));
 		
 	}
 

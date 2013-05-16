@@ -6,6 +6,7 @@ require_once('config.php');
 //Classes
 require_once('classes/general.class.php');
 require_once('classes/documentor.class.php');
+require_once('classes/user.class.php');
 
 function requestHandler()
 {
@@ -28,29 +29,12 @@ function requestHandler()
 
 }
 
-function isAuthenticated()
-{
-
-	if(!isset($_SESSION['authenticated']))
-	{
-	
-		$gen = new General();
-		
-		$gen->setNotification('You must be logged in to see that...', 'negative-notification');
-		header('Location: '.BASE_URL);
-		
-	}
-
-}
-
 function logout()
 {
-	
-	$gen = new General();
 
 	unset($_SESSION['authenticated']);
 	
-	$gen->setNotification('Logged out safely', 'positive-notification');
+	General::setNotification('Logged out safely', 'positive-notification');
 	
 	header('Location: '.BASE_URL);
 
@@ -62,26 +46,43 @@ function login($url = '')
 	if(isset($_POST['submit']))
 	{
 	
-		$gen = new General();
+		$user = new User();
 	
-		$user = $gen->getVar('post', 'user');
-		$pass = $gen->getVar('post', 'pass');
+		$username = General::getVar('post', 'user');
+		$password = General::getVar('post', 'pass');
 		
-		if($user && $pass)
+		if($username && $password)
 		{
-			
-			if($user == USERNAME && $pass == PASSWORD)
+		
+			$user->username = $username;
+			$user->password = $password;
+		
+			if($user->usernameExists())
 			{
+				
+				if($user->verifyPassword())
+				{
+				
+					$_SESSION['user'] = array(
+						'username' => $username,
+						'authenticated' => true
+					);
+					
+					$url = 'home';
+					
+				}
+				else
+				{
+					
+					General::setNotification('Your username or password are incorrect...', 'negative-notification');
+					
+				}
 			
-				$_SESSION['authenticated'] = true;
-				
-				$url = 'home';
-				
 			}
 			else
 			{
 				
-				$gen->setNotification('Your username or password are incorrect...', 'negative-notification');
+				General::setNotification('User doesn\'t exist', 'negative-notification');
 				
 			}
 			
@@ -89,7 +90,7 @@ function login($url = '')
 		else
 		{
 				
-			$gen->setNotification('You didn\'t enter a username or password', 'negative-notification');
+			General::setNotification('You didn\'t enter a username or password', 'negative-notification');
 			
 		}
 		

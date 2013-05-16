@@ -44,6 +44,43 @@ $(document).ready(function(){
 		
 	});
 	
+	$('#add-parameter').click(function(){
+	
+		var ID = $('.parameter-group').size();
+		
+		var parameterHtml = '<div class="parameter-group">' +
+							'<label for="parameter-' + ID + '-name">Name</label>' +
+							'<input type="text" name="parameter-' + ID + '-name" id="parameter-' + ID + '-name" placeholder="e.g. includeUsers" autocomplete="off" />' +
+							'<label for="parameter-' + ID + '-example">Example</label>' +
+							'<input type="text" name="parameter-' + ID + '-example" id="parameter-' + ID + '-example" placeholder="e.g. true or 354" autocomplete="off" />' +
+							'<label for="parameter-' + ID + '-description">Description</label>' +
+							'<input type="text" name="parameter-' + ID + '-description" id="parameter-' + ID + '-description" placeholder="e.g. This call fetches users" autocomplete="off" />' +
+							'<label for="parameter-' + ID + '-optional">Optional</label>' +
+							'<select name="parameter-' + ID + '-optional" id="parameter-' + ID + '-optional">' +
+							'<option value="0">No</option>' +
+							'<option value="1">Yes</option>' +
+							'</select>' +
+							'</div><!-- End parameter group -->';
+							
+			$('.parameter-group').last().after(parameterHtml);
+			
+			$('select[name=parameter-' + ID + '-optional]').cFields({label:true});
+		
+	});
+	
+	$('.show-hide').click(function(){
+	
+		var title = $(this).attr('title');
+		var label = $(this).html();
+		
+		$(this).html(title);
+		$(this).attr('title', label);
+		
+		$('.parameters').toggle();
+		$('#add-parameter').toggle();
+		
+	});
+	
 	$('#save-documentation').submit(function(e){
 	
 		e.preventDefault();
@@ -57,6 +94,20 @@ $(document).ready(function(){
 		var auth = getVal('auth', 'select');
 		var request = getVal('request', 'html');
 		var response = getVal('response', 'html');
+		var parameters = [];
+		
+		$('.parameter-group').each(function(index){
+		
+			var parameterPrefix = 'parameter-' + index + '-';
+			
+			parameters.push({
+				name: getVal(parameterPrefix + 'name', 'input'),
+				example: getVal(parameterPrefix + 'example', 'input'),
+				description: getVal(parameterPrefix + 'description', 'input'),
+				optional: Number(getVal(parameterPrefix + 'optional', 'select'))
+			});
+			
+		});
 		
 		$.ajax({
  			type: 'POST',
@@ -68,7 +119,8 @@ $(document).ready(function(){
 				method: method,
 				auth: auth,
 				request: request,
-				response: response
+				response: response,
+				parameters: parameters
 			},
 			dataType: 'json',
 			success: function(data){
@@ -105,6 +157,20 @@ $(document).ready(function(){
 		var auth = getVal('auth', 'select');
 		var request = getVal('request', 'html');
 		var response = getVal('response', 'html');
+		var parameters = [];
+		
+		$('.parameter-group').each(function(index){
+		
+			var parameterPrefix = 'parameter-' + index + '-';
+			
+			parameters.push({
+				name: getVal(parameterPrefix + 'name', 'input'),
+				example: getVal(parameterPrefix + 'example', 'input'),
+				description: getVal(parameterPrefix + 'description', 'input'),
+				optional: Number(getVal(parameterPrefix + 'optional', 'select'))
+			});
+			
+		});
 		
 		$.ajax({
  			type: 'POST',
@@ -115,7 +181,8 @@ $(document).ready(function(){
 				method: method,
 				auth: auth,
 				request: request,
-				response: response
+				response: response,
+				parameters: parameters
 			},
 			dataType: 'json',
 			success: function(data){
@@ -159,31 +226,31 @@ function alert(message)
 
 }
 
-function getVal(id, type)
+function getVal(ID, type)
 {
 
 	if(type == 'input')
 	{
 		
-		var val = $('#' + id).val();
+		var val = $('#' + ID).val();
 		
 	}
 	else if(type == 'select')
 	{
 		
-		var val = $('#' + id + ':selected').val();
+		var val = $('#' + ID + ' option:selected').val();
 		
 	}
 	else if(type == 'checkbox')
 	{
 		
-		var val = $('#' + id + ':checked').val();
+		var val = $('#' + ID + ':checked').val();
 		
 	}
 	else if(type == 'html')
 	{
 		
-		var val = $('#' + id + '').html();
+		var val = $('#' + ID).html();
 		
 	}
 

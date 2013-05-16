@@ -9,8 +9,6 @@
 </head>
 <body class="login">
 
-	<?php General::notification(); ?>
-
 	<form class="login" action="request/login/" method="post">
 	
 		<h1>API Documentor</h1>
@@ -19,6 +17,8 @@
 		<input type="password" name="pass" id="pass" placeholder="Password..." autocomplete="off" />
 		
 		<input type="submit" name="submit" id="login" value="Login" />
+		
+		<?php General::notification(); ?>
 	
 		<span>Version: <?php echo VERSION; ?></span>
 	

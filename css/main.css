@@ -1,6 +1,8 @@
 /* BASE STYLES */
 
-body, html {
+html { padding: 0; margin: 0;}
+
+body {
 	padding: 0;
 	margin: 0;
 	background: #FFF url(images/bg.png) repeat-y left;
@@ -9,6 +11,18 @@ body, html {
 
 body.login {
 	background: #DEDEDE;
+	background-image: none;
+}
+
+body.login #alert {
+	display: block!important;
+	position: relative!important;
+	top: 0!important;
+	right: 0!important;
+	width: 310px!important;
+	margin: 20px 0 0 0!important;
+	background: #BD5256;
+	color: #FFF;
 }
 
 a { color: #777; text-decoration: none;}
@@ -45,7 +59,7 @@ select {
 
 input[type=checkbox] { display: none;}
 
-input[type=submit] {
+input[type=submit], input[type=button] {
 	background: #80C579;
 	color: #FFF;
 	width: auto;
@@ -61,7 +75,8 @@ input[type=submit] {
 	width: 100%;
 	height: 100%;
 	z-index: 50;
-	opacity: 0.5;
+	opacity: 0.9;
+	z-index: 9999;
 }
 
 .clear { clear:both;}
@@ -92,11 +107,12 @@ input[type=submit] {
 		width: 800px;
 		position: absolute;
 		padding: 20px;
-		z-index: 99;
-		box-shadow: 0 0 10px #DDD;
-		-o-box-shadow: 0 0 10px #DDD;
-		-moz-box-shadow: 0 0 10px #DDD;
-		-webkit-box-shadow: 0 0 10px #DDD;
+		z-index: 99999999;
+		border: 1px solid #BBB;
+		box-shadow: 0 0 10px #AAA;
+		-o-box-shadow: 0 0 10px #AAA;
+		-moz-box-shadow: 0 0 10px #AAA;
+		-webkit-box-shadow: 0 0 10px #AAA;
 		border-radius: 4px;
 		-o-border-radius: 4px;
 		-moz-border-radius: 4px;
@@ -107,6 +123,9 @@ input[type=submit] {
 			color: #CCC!important;
 			text-align: left!important;
 			margin: 0;
+			font-family: 'Lato', sans-serif;
+			font-weight: normal;
+			text-transform: uppercase;
 		}
 		
 		.php-error .error-container table {
@@ -172,6 +191,7 @@ form.login {
 		box-shadow: 0 4px 0 #6AA662;
 		padding: 15px;
 		font-size: 16px;
+		border-radius: 2px;
 	}
 	
 	form.login span { 
@@ -458,6 +478,30 @@ code.example {
 		border-color: #AAA;
 		box-shadow:0 0 2px #AAA;
 	}
+	
+.parameters {
+	background: #F9F9F9;
+	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
+	margin: 20px 0 10px 0;
+	padding: 0 20px 20px 20px;
+}
+
+	.parameter-group {
+		border-left: 3px solid #999;
+		padding-left: 20px;
+	}
+
+.show-hide {
+	display: inline-block;
+	background: #F9F9F9;
+	color: #999;
+	font-size: 12px;
+	padding: 2px 8px;
+	border-radius: 2px;
+	cursor: pointer;
+	border: 1px solid #DDD;
+}
 
 footer {
 	font-size: 11px;
