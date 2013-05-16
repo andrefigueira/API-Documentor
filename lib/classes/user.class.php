@@ -41,6 +41,44 @@ class User extends General
 		return $results;
 			
 	}
+	
+	public function fetchUser()
+	{
+	
+		$ID = $this->getVar('get', 'ID');
+
+		$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+		
+		$result = $db->query('
+		SELECT *
+		FROM users
+		WHERE ID = "'.$ID.'"
+		LIMIT 1
+		');
+		
+		$totalRows = $result->num_rows;
+		
+		$results = array();
+		
+		if($totalRows > 0)
+		{
+		
+			while($row = $result->fetch_object())
+			{
+			
+				$results = array(
+					'ID' => $row->ID,
+					'username' => stripslashes($row->username),
+					'email' => stripslashes($row->email)
+				);
+			
+			}
+		
+		}
+		
+		return $results;
+		
+	}
 
 	public function usernameExists()
 	{
