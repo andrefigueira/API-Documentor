@@ -4,10 +4,12 @@
 		<a class="logo" href="<?php echo BASE_URL; ?>home">API Documentor</a>
 		<nav>
 			<ul>
-				<li><a href="home">Manage Documentation</a></li>
-				<li><a class="add" href="add">Create Documentation</a></li>
-				<li><a href="users">Manage Users</a></li>
-				<li><a class="add" href="add-user">Create User</a></li>
+				<li><a href="dashboard/home">Manage Documentation</a></li>
+				<li><a class="add" href="dashboard/add">Create Documentation</a></li>
+				<li><a href="dashboard/users">Manage Users</a></li>
+				<li><a class="add" href="dashboard/add-user">Create User</a></li>
+				<li><a href="dashboard/categories">Manage Categories</a></li>
+				<li><a class="add" href="dashboard/add-category">Create Category</a></li>
 				<li><a class="logout" href="">Logout</a></li>
 			</ul>
 		</nav><!-- End nav -->

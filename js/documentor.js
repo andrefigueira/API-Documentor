@@ -27,7 +27,7 @@ $(document).ready(function(){
 					if(data.success)
 					{
 					
-						window.location = BASE_URL + 'home';
+						window.location = BASE_URL + 'dashboard/home';
 						
 					}
 					else
@@ -72,7 +72,54 @@ $(document).ready(function(){
 						if(data.success)
 						{
 						
-							window.location = BASE_URL + 'users';
+							window.location = BASE_URL + 'dashboard/users';
+							
+						}
+						else
+						{
+							
+							alert(data.message);
+							
+						}
+					
+					}
+				});
+					
+			}
+		
+		}
+		
+	});
+	
+	$('.delete-category').click(function(){
+		
+		if(!$(this).hasClass('disabled'))
+		{
+		
+			var id = $(this).data('id');
+		
+			if(isNaN(id)){ alert('Ohhh no you don\'t!');}
+			
+			var deleteDocumentation = confirm('Delete this category?');
+			
+			if(deleteDocumentation)
+			{
+		
+				var ajaxURL = BASE_URL + 'request/deleteCategory/';
+			
+				$.ajax({
+		 			type: 'POST',
+					url: ajaxURL,
+					data: { 
+						ID: id
+					},
+					dataType: 'json',
+					success: function(data){
+					
+						if(data.success)
+						{
+						
+							window.location = BASE_URL + 'dashboard/categories';
 							
 						}
 						else
@@ -175,7 +222,7 @@ $(document).ready(function(){
 				if(data.success)
 				{
 				
-					window.location = BASE_URL + 'edit/' + ID;
+					window.location = BASE_URL + 'dashboard/edit/' + ID;
 					
 				}
 				else
@@ -237,7 +284,7 @@ $(document).ready(function(){
 				if(data.success)
 				{
 				
-					window.location = BASE_URL + 'home';
+					window.location = BASE_URL + 'dashboard/home';
 					
 				}
 				else
@@ -280,7 +327,7 @@ $(document).ready(function(){
 				if(data.success)
 				{
 				
-					window.location = BASE_URL + 'users';
+					window.location = BASE_URL + 'dashboard/users';
 					
 				}
 				else
@@ -323,7 +370,85 @@ $(document).ready(function(){
 				if(data.success)
 				{
 				
-					window.location = BASE_URL + 'edit-user/' + ID;
+					window.location = BASE_URL + 'dashboard/edit-user/' + ID;
+					
+				}
+				else
+				{
+					
+					alert(data.message);
+					
+				}
+			
+			}
+		});
+		
+    	return false;
+	
+	});
+	
+	$('#create-category').submit(function(e){
+	
+		e.preventDefault();
+	
+		var ajaxURL = BASE_URL + 'request/createCategory/';
+		
+		var name = getVal('name', 'input');
+		var description = getVal('description', 'input');
+		
+		$.ajax({
+ 			type: 'POST',
+			url: ajaxURL,
+			data: { 
+				name: name,
+				description: description
+			},
+			dataType: 'json',
+			success: function(data){
+			
+				if(data.success)
+				{
+				
+					window.location = BASE_URL + 'dashboard/categories';
+					
+				}
+				else
+				{
+					
+					alert(data.message);
+					
+				}
+			
+			}
+		});
+		
+    	return false;
+	
+	});
+	
+	$('#save-category').submit(function(e){
+	
+		e.preventDefault();
+	
+		var ajaxURL = BASE_URL + 'request/saveCategory/';
+		
+		var name = getVal('name', 'input');
+		var description = getVal('description', 'input');
+		
+		$.ajax({
+ 			type: 'POST',
+			url: ajaxURL,
+			data: { 
+				name: name,
+				description: description
+			},
+			dataType: 'json',
+			success: function(data){
+			
+				if(data.success)
+				{
+				
+					window.location = BASE_URL + 'dashboard/edit-category/' + ID;
 					
 				}
 				else

@@ -42,7 +42,7 @@ ul {
 
 label { display: block; margin: 20px 0 10px 0;}
 
-input {
+input, textarea {
 	display: block;
 	border: none;
 	font-size: 14px;
@@ -212,40 +212,6 @@ form.login {
 
 /* MAIN STYLES */
 
-header.masthead {
-	background: #4A82A8;
-	padding: 0 0 4px 0;
-}
-
-	header.masthead a.home {
-		display: block;
-		float: left;
-		padding: 20px 30px 20px 20px;
-		color: #FFF;
-		text-transform: uppercase;
-		font-weight: bold;
-	}
-
-	header.masthead nav {
-		display:block;
-		float:right;
-	}
-	
-		header.masthead nav ul {
-			
-		}
-		
-			header.masthead nav ul li {
-				
-			}
-		
-				header.masthead nav ul li a {
-					display: block;
-					padding: 20px 30px;
-					color: #FFF;
-					text-transform: uppercase;
-				}
-
 .container {
 	height: auto;
 	min-height: 100%;
@@ -270,7 +236,7 @@ header.masthead {
 
 	#sidebar nav {
 		display: block;
-		height: 200px;
+		height: 500px;
 	}
 	
 		#sidebar nav ul {
@@ -421,7 +387,7 @@ table.standard-table {
 
 	.button:hover { opacity:1;}
 
-	.button.delete, .button.delete-user {
+	.button.delete, .button.delete-user, .button.delete-category  {
 		background:#D64D3C url(images/trash.png) no-repeat;
 		background-size: 60%;
 		background-position: center center;
@@ -463,6 +429,13 @@ table.standard-table {
 		border: 1px solid #AAA;
 		box-shadow:0 0 2px #AAA;
 	}
+	
+.inside-form textarea {
+	width: 600px;
+	min-height: 100px;
+	border: 1px solid #DDD;
+	border-radius: 2px;
+}
 	
 .inside-form input[type=submit], .inside-form input[type=button] {
 	width: auto;

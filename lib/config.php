@@ -16,7 +16,7 @@ date_default_timezone_set('Europe/London');
 define('BASE_URL', 'https://staging.hollatme.com/dashboard/api/');
 
 //Version of this monitoring thingy
-define('VERSION', '0.2');
+define('VERSION', '0.3');
 
 //If debug if true, then if there are errors, they'll be displayed
 define('DEBUG', true);

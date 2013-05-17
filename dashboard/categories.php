@@ -1,4 +1,4 @@
-<?php require_once('lib/functions.php'); General::validateSession(); ?>
+<?php require_once('../lib/functions.php'); General::validateSession(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,19 +27,19 @@
 	
 	<div class="container">
 	
-		<?php require_once('lib/includes/sidebar.php'); ?>
+		<?php require_once('../lib/includes/sidebar.php'); ?>
 		
 		<section id="content">
 		
-			<div class="title">Current Documentation</div>
+			<div class="title">Current Categories</div>
 		
 			<?php
 			
-			$doc = new Documentor();
+			$category = new Categories();
 			
-			$calls = $doc->fetchCalls();
+			$categories = $category->fetchCategories();
 			
-			if(count($calls) > 0)
+			if(count($categories) > 0)
 			{
 				
 				?>
@@ -47,21 +47,21 @@
 				<table cellpadding="0" cellspacing="0" border="0" class="standard-table" width="100%">
 					
 						<tr>
-							<th>Call</th>
-							<th>Method</th>
+							<th>Name</th>
+							<th>Description</th>
 							<th>Created</th>
 							<th width="20%"></th>
 						</tr>
 				
-					<?php foreach($calls as $call){ ?>
+					<?php foreach($categories as $realCategory){ ?>
 					
 						<tr>
-							<td><a href="edit/<?php echo $call['ID']; ?>"><?php echo $call['name']; ?></a></td>
-							<td><pre class="method"><?php echo $doc->methodName($call['method']); ?></pre></td>
-							<td><?php echo $doc->formatDate($call['addedDate']); ?></td>
+							<td><a href="dashboard/edit-category/<?php echo $realCategory['ID']; ?>"><?php echo $realCategory['name']; ?></a></td>
+							<td><?php echo $realCategory['description']; ?></td>
+							<td><?php echo General::formatDate($realCategory['addedDate']); ?></td>
 							<td>
-								<a href="javascript:{}" data-id="<?php echo $call['ID']; ?>" class="delete button"></a>
-								<a href="edit/<?php echo $call['ID']; ?>" class="button edit"></a>
+								<a href="javascript:{}" data-id="<?php echo $realCategory['ID']; ?>" class="delete-category button"></a>
+								<a href="dashboard/edit-category/<?php echo $realCategory['ID']; ?>" class="button edit"></a>
 							</td>
 						</tr>
 					
@@ -78,7 +78,7 @@
 				
 				?>
 				
-				<p class="none">No documentation has been created...</p>
+				<p class="none">No category has been created...</p>
 				
 				<?php
 				

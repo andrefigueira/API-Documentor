@@ -7,6 +7,7 @@ require_once('config.php');
 require_once('classes/general.class.php');
 require_once('classes/documentor.class.php');
 require_once('classes/user.class.php');
+require_once('classes/categories.class.php');
 
 function requestHandler()
 {
@@ -40,7 +41,7 @@ function logout()
 
 }
 
-function login($url = '')
+function login($url = 'dashboard/')
 {
 
 	if(isset($_POST['submit']))
@@ -68,7 +69,7 @@ function login($url = '')
 						'authenticated' => true
 					);
 					
-					$url = 'home';
+					$url = 'dashboard/home';
 					
 				}
 				else
@@ -118,6 +119,15 @@ function createUser()
 
 }
 
+function createCategory()
+{
+
+	$category = new Categories();
+	
+	$category->newCategory();
+
+}
+
 function save()
 {
 
@@ -136,6 +146,15 @@ function saveUser()
 
 }
 
+function saveCategory()
+{
+
+	$category = new Categories();
+	
+	$category->saveCategory();
+
+}
+
 function delete()
 {
 
@@ -151,6 +170,15 @@ function deleteUser()
 	$user = new User();
 	
 	$user->deleteUser();
+
+}
+
+function deleteCategory()
+{
+
+	$category = new Categories();
+	
+	$category->deleteCategory();
 
 }
 

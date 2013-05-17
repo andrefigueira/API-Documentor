@@ -1,4 +1,4 @@
-<?php require_once('lib/functions.php'); General::validateSession(); ?>
+<?php require_once('../lib/functions.php'); General::validateSession(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +27,7 @@
 	
 	<div class="container">
 	
-		<?php require_once('lib/includes/sidebar.php'); ?>
+		<?php require_once('../lib/includes/sidebar.php'); ?>
 		
 		<section id="content">
 		

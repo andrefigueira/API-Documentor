@@ -1,4 +1,4 @@
-<?php require_once('lib/functions.php'); ?>
+<?php require_once('../lib/functions.php'); General::validateSession(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,19 +27,19 @@
 	
 	<div class="container">
 	
-		<?php require_once('lib/includes/documentation-sidebar.php'); ?>
+		<?php require_once('../lib/includes/sidebar.php'); ?>
 		
 		<section id="content">
 		
-			<div class="title">Current Documentation</div>
+			<div class="title">Current Users</div>
 		
 			<?php
 			
-			$doc = new Documentor();
+			$user = new User();
 			
-			$calls = $doc->fetchCalls();
+			$users = $user->fetchUsers();
 			
-			if(count($calls) > 0)
+			if(count($users) > 0)
 			{
 				
 				?>
@@ -47,21 +47,21 @@
 				<table cellpadding="0" cellspacing="0" border="0" class="standard-table" width="100%">
 					
 						<tr>
-							<th>Call</th>
-							<th>Method</th>
+							<th>Username</th>
+							<th>Email</th>
 							<th>Created</th>
 							<th width="20%"></th>
 						</tr>
 				
-					<?php foreach($calls as $call){ ?>
+					<?php foreach($users as $realUser){ ?>
 					
 						<tr>
-							<td><a href="dashboard/edit/<?php echo $call['ID']; ?>"><?php echo $call['name']; ?></a></td>
-							<td><pre class="method"><?php echo $doc->methodName($call['method']); ?></pre></td>
-							<td><?php echo $doc->formatDate($call['addedDate']); ?></td>
+							<td><a href="dashboard/edit-user/<?php echo $realUser['ID']; ?>"><?php echo $realUser['username']; ?></a></td>
+							<td><?php echo $realUser['email']; ?></td>
+							<td><?php echo General::formatDate($realUser['addedDate']); ?></td>
 							<td>
-								<a href="javascript:{}" data-id="<?php echo $call['ID']; ?>" class="delete button"></a>
-								<a href="dashboard/edit/<?php echo $call['ID']; ?>" class="button edit"></a>
+								<a href="javascript:{}" data-id="<?php echo $realUser['ID']; ?>" class="delete-user <?php if($realUser['username'] == $_SESSION['user']['username']){ echo 'disabled';} ?> button"></a>
+								<a href="dashboard/edit-user/<?php echo $realUser['ID']; ?>" class="button edit"></a>
 							</td>
 						</tr>
 					
@@ -78,7 +78,7 @@
 				
 				?>
 				
-				<p class="none">No documentation has been created...</p>
+				<p class="none">No user has been created...</p>
 				
 				<?php
 				
