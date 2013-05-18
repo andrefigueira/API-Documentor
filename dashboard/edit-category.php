@@ -51,6 +51,8 @@
 		
 			<form id="save-category" class="inside-form" method="post">
 			
+				<input type="hidden" name="ID" id="ID" value="<?php echo $data['ID']; ?>" />
+			
 				<label for="name">Name</label>	
 				<input type="text" name="name" id="name" placeholder="e.g. onealmond" value="<?php echo $data['name']; ?>" autocomplete="off" />
 				

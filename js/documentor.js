@@ -6,7 +6,7 @@ $(document).ready(function(){
 	
 		var id = $(this).data('id');
 		
-		if(isNaN(id)){ alert('Ohhh no you don\'t!');}
+		if(isNaN(id)){ alert('Ohhh no you don\'t!'); return false;}
 		
 		var deleteDocumentation = confirm('Delete this documentation?');
 		
@@ -51,7 +51,7 @@ $(document).ready(function(){
 		
 			var id = $(this).data('id');
 		
-			if(isNaN(id)){ alert('Ohhh no you don\'t!');}
+			if(isNaN(id)){ alert('Ohhh no you don\'t!'); return false;}
 			
 			var deleteDocumentation = confirm('Delete this user?');
 			
@@ -98,7 +98,7 @@ $(document).ready(function(){
 		
 			var id = $(this).data('id');
 		
-			if(isNaN(id)){ alert('Ohhh no you don\'t!');}
+			if(isNaN(id)){ alert('Ohhh no you don\'t!'); return false;}
 			
 			var deleteDocumentation = confirm('Delete this category?');
 			
@@ -182,6 +182,7 @@ $(document).ready(function(){
 		var ajaxURL = BASE_URL + 'request/save/';
 		
 		var ID = getVal('ID', 'input');
+		var categoryID = getVal('categoryID', 'select');
 		var name = getVal('name', 'input');
 		var uri = getVal('uri', 'input');
 		var method = getVal('method', 'select');
@@ -208,6 +209,7 @@ $(document).ready(function(){
 			url: ajaxURL,
 			data: { 
 				ID: ID,
+				categoryID: categoryID,
 				name: name,
 				uri: uri,
 				method: method,
@@ -245,6 +247,7 @@ $(document).ready(function(){
 	
 		var ajaxURL = BASE_URL + 'request/create/';
 		
+		var categoryID = getVal('categoryID', 'select');
 		var name = getVal('name', 'input');
 		var uri = getVal('uri', 'input');
 		var method = getVal('method', 'select');
@@ -270,6 +273,7 @@ $(document).ready(function(){
  			type: 'POST',
 			url: ajaxURL,
 			data: { 
+				categoryID: categoryID,
 				name: name,
 				uri: uri,
 				method: method,
@@ -350,6 +354,7 @@ $(document).ready(function(){
 	
 		var ajaxURL = BASE_URL + 'request/saveUser/';
 		
+		var ID = getVal('ID', 'input');
 		var username = getVal('username', 'input');
 		var email = getVal('email', 'input');
 		var password = getVal('password', 'input');
@@ -359,6 +364,7 @@ $(document).ready(function(){
  			type: 'POST',
 			url: ajaxURL,
 			data: { 
+				ID: ID,
 				username: username,
 				email: email,
 				password: password,
@@ -432,6 +438,7 @@ $(document).ready(function(){
 	
 		var ajaxURL = BASE_URL + 'request/saveCategory/';
 		
+		var ID = getVal('ID', 'input');
 		var name = getVal('name', 'input');
 		var description = getVal('description', 'input');
 		
@@ -439,6 +446,7 @@ $(document).ready(function(){
  			type: 'POST',
 			url: ajaxURL,
 			data: { 
+				ID: ID,
 				name: name,
 				description: description
 			},

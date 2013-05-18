@@ -31,60 +31,13 @@
 		
 		<section id="content">
 		
-			<div class="title">Current Documentation</div>
-		
-			<?php
+			<div class="title">API Documentation</div>
 			
-			$doc = new Documentor();
+			<div class="content-area">
 			
-			$calls = $doc->fetchCalls();
+				<p>Select the call you would like to read on the left.</p>
 			
-			if(count($calls) > 0)
-			{
-				
-				?>
-				
-				<table cellpadding="0" cellspacing="0" border="0" class="standard-table" width="100%">
-					
-						<tr>
-							<th>Call</th>
-							<th>Method</th>
-							<th>Created</th>
-							<th width="20%"></th>
-						</tr>
-				
-					<?php foreach($calls as $call){ ?>
-					
-						<tr>
-							<td><a href="dashboard/edit/<?php echo $call['ID']; ?>"><?php echo $call['name']; ?></a></td>
-							<td><pre class="method"><?php echo $doc->methodName($call['method']); ?></pre></td>
-							<td><?php echo $doc->formatDate($call['addedDate']); ?></td>
-							<td>
-								<a href="javascript:{}" data-id="<?php echo $call['ID']; ?>" class="delete button"></a>
-								<a href="dashboard/edit/<?php echo $call['ID']; ?>" class="button edit"></a>
-							</td>
-						</tr>
-					
-					<?php } ?>
-				
-				</table>
-				
-				<?php
-				
-				
-			}
-			else
-			{
-				
-				?>
-				
-				<p class="none">No documentation has been created...</p>
-				
-				<?php
-				
-			}
-			
-			?>
+			</div><!-- End content area -->
 		
 		</section>
 		

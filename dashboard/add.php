@@ -29,6 +29,14 @@
 	
 		<?php require_once('../lib/includes/sidebar.php'); ?>
 		
+		<?php
+		
+		$category = new Categories();
+			
+		$categories = $category->fetchCategories();
+		
+		?>
+		
 		<section id="content">
 		
 			<div class="title">Create Documentation</div>
@@ -56,6 +64,23 @@
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</select>
+				
+				<?php if(count($categories) > 0){ ?>
+		
+					<label for="categoryID">Call Category</label>	
+					<select name="categoryID" id="categoryID">
+				
+						<?php foreach($categories as $realCategory){ ?>
+							<option value="<?php echo $realCategory['ID']; ?>"><?php echo $realCategory['name']; ?></option>
+						<?php } ?>
+					
+					</select>
+							
+				<?php }else{ ?>
+					
+					<p class="no-categories">Before adding a call you must create a category</p>
+					
+				<?php } ?>
 				
 				<div class="normal-label">Parameters &middot; <span class="show-hide" title="Show">Hide</span></div>
 				<div class="parameters">

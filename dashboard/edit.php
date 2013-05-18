@@ -34,6 +34,10 @@
 	
 	if($data['parameters'] == ''){ $data['parameters'] = array();}
 		
+	$category = new Categories();
+		
+	$categories = $category->fetchCategories();
+		
 	?>
 	
 	<div class="container">
@@ -77,6 +81,23 @@
 					<option <?php if($data['auth'] == 0){ echo 'selected="selected"';} ?> value="0">No</option>
 					<option <?php if($data['auth'] == 1){ echo 'selected="selected"';} ?> value="1">Yes</option>
 				</select>
+				
+				<?php if(count($categories) > 0){ ?>
+		
+					<label for="categoryID">Call Category</label>	
+					<select name="categoryID" id="categoryID">
+				
+						<?php foreach($categories as $realCategory){ ?>
+							<option <?php if($data['categoryID'] == $realCategory['ID']){ echo 'selected="selected"';} ?> value="<?php echo $realCategory['ID']; ?>"><?php echo $realCategory['name']; ?></option>
+						<?php } ?>
+					
+					</select>
+							
+				<?php }else{ ?>
+					
+					<p class="no-categories">Before adding a call you must create a category</p>
+					
+				<?php } ?>
 				
 				<div class="normal-label">Parameters &middot; <span class="show-hide" title="Show">Hide</span></div>
 				<div class="parameters">

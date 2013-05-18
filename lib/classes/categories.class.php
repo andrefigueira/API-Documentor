@@ -158,8 +158,6 @@ class Categories extends General
 		
 		$this->handleResult($result);
 		
-		return true;
-		
 	}
 	
 	private function create($fields)
@@ -194,6 +192,7 @@ class Categories extends General
 		$ID = $this->getVar('post', 'ID');
 		
 		if(!is_numeric($ID)){ $this->jsonReply(false, 'Oh no you don\'t!');}
+		if($ID == 0){ $this->jsonReply(false, 'Sorry you can\'t delete that category');}
 		
 		$this->delete($ID);
 		

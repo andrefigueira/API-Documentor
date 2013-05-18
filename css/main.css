@@ -25,6 +25,11 @@ body.login #alert {
 	color: #FFF;
 }
 
+h2 { 
+	font-size: 16px;
+	margin: 0;
+}
+
 a { color: #777; text-decoration: none;}
 
 ul {
@@ -255,6 +260,30 @@ form.login {
 					color: #FFF;
 					padding: 10px;
 				}
+	
+			#sidebar nav ul li ul {
+				display: block;
+				margin: 0 30px 20px 30px;
+				background: #F9F9F9;
+				border-radius: 2px;
+			}
+	
+				#sidebar nav ul li ul li {
+					display: block;
+					border-bottom: 1px solid #EEE;
+				}
+				
+					#sidebar nav ul li ul li:last-child {
+						border-bottom: none;
+					}
+	
+					#sidebar nav ul li ul li a {
+						display: block;
+						margin: 0;
+						color: #333;
+						padding: 10px;
+						font-size: 12px;
+					}
 
 	#sidebar footer {
 		color: #FFF;
@@ -344,6 +373,21 @@ table.standard-table {
 			border-bottom: 1px solid #EEE;
 		}
 
+.spacer { margin: 40px 0 0 0;}
+
+table.parameters-table {
+	border-right: none;
+	border-left: none;
+	border-bottom: none;
+	font-size: 14px;
+	margin: 5px 0 40px 0;
+	width: 700px;
+}
+	
+	table.parameters-table tr td {
+		padding: 20px 0;
+	}
+
 .pie-chart, .area-chart { 
 	width: 500px;
 	height: 400px;
@@ -356,7 +400,26 @@ table.standard-table {
 	border-radius: 2px;
 	color: #B4811D;
 	font-family: Monaco;
-	font-family: 11px;
+	font-size: 11px;
+}
+
+	.title .method {
+		margin: -15px 0 0 20px;
+		font-size: 14px;
+	}
+
+.call-url, .call-method {
+	display: inline-block;
+	font-family: Monaco;
+	font-size: 12px;
+}
+
+	.call-method {
+		margin: 0 0 20px 0;
+	}
+	
+.call-description {
+	line-height: 25px;
 }
 
 .uri {
@@ -442,6 +505,13 @@ table.standard-table {
 	margin: 10px 0 0 0;
 	float: none;
 	border: none;
+}
+
+.example-value {}
+
+.preview-example {
+	border: none!important;
+	background: #F8F8F8!important;
 }
 
 .normal-label { margin: 10px 0 0 0;}

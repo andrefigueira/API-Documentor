@@ -60,7 +60,7 @@
 							<td><?php echo $realCategory['description']; ?></td>
 							<td><?php echo General::formatDate($realCategory['addedDate']); ?></td>
 							<td>
-								<a href="javascript:{}" data-id="<?php echo $realCategory['ID']; ?>" class="delete-category button"></a>
+								<a href="javascript:{}" data-id="<?php echo $realCategory['ID']; ?>" class="delete-category <?php if($realCategory['ID'] == 0){ echo 'disabled';} ?> button"></a>
 								<a href="dashboard/edit-category/<?php echo $realCategory['ID']; ?>" class="button edit"></a>
 							</td>
 						</tr>

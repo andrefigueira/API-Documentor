@@ -39,10 +39,9 @@
 			
 			$calls = $doc->fetchCalls();
 			
-			if(count($calls) > 0)
-			{
-				
-				?>
+			?>
+			
+			<?php if(count($calls) > 0){ ?>
 				
 				<table cellpadding="0" cellspacing="0" border="0" class="standard-table" width="100%">
 					

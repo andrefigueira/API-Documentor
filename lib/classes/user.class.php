@@ -254,8 +254,6 @@ class User extends General
 		
 		$this->handleResult($result);
 		
-		return true;
-		
 	}
 	
 	private function create($fields)

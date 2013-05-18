@@ -3,14 +3,19 @@
 class Documentor extends General
 {
 
-	public function fetchCalls()
+	public function fetchCalls($categoryID = null)
 	{
 
 		$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		
+		$addSql = '';
+		
+		if($categoryID != null){ $addSql .= 'WHERE categoryID = "'.$categoryID.'"';}
+		
 		$result = $db->query('
 		SELECT *
 		FROM calls
+		'.$addSql.'
 		ORDER BY name DESC
 		');
 		
@@ -26,6 +31,7 @@ class Documentor extends General
 			
 				array_push($results, array(
 					'ID' => $row->ID,
+					'categoryID' => $row->categoryID,
 					'name' => stripslashes($row->name),
 					'uri' => stripslashes($row->uri),
 					'method' => stripslashes($row->method),
@@ -70,6 +76,7 @@ class Documentor extends General
 			
 				$results = array(
 					'ID' => $row->ID,
+					'categoryID' => $row->categoryID,
 					'name' => stripslashes($row->name),
 					'uri' => stripslashes($row->uri),
 					'method' => stripslashes($row->method),
@@ -93,6 +100,7 @@ class Documentor extends General
 	{
 		
 		$ID = $this->getVar('post', 'ID');
+		$categoryID = $this->getVar('post', 'categoryID');
 		$name = $this->getVar('post', 'name');
 		$uri = $this->getVar('post', 'uri');
 		$method = $this->getVar('post', 'method');
@@ -109,6 +117,7 @@ class Documentor extends General
 		
 		$this->save(array(
 			'ID' => $ID,
+			'categoryID' => $categoryID,
 			'name' => $name,
 			'uri' => $uri,
 			'method' => $method,
@@ -127,6 +136,7 @@ class Documentor extends General
 	public function newDocumentation()
 	{
 		
+		$categoryID = $this->getVar('post', 'categoryID');
 		$name = $this->getVar('post', 'name');
 		$uri = $this->getVar('post', 'uri');
 		$method = $this->getVar('post', 'method');
@@ -141,6 +151,7 @@ class Documentor extends General
 		if($auth == ''){ $this->jsonReply(false, 'Enter a auth setting for the call');}
 		
 		$this->create(array(
+			'categoryID' => $categoryID,
 			'name' => $name,
 			'uri' => $uri,
 			'method' => $method,
@@ -166,6 +177,7 @@ class Documentor extends General
 		$result = $db->query('
 		UPDATE calls
 		SET
+		categoryID = "'.$categoryID.'",
 		name = "'.$name.'",
 		uri = "'.$uri.'",
 		method = "'.$method.'",
@@ -193,6 +205,7 @@ class Documentor extends General
 		$result = $db->query('
 		INSERT INTO calls
 		(
+		categoryID,
 		name,
 		uri, 
 		method,
@@ -204,6 +217,7 @@ class Documentor extends General
 		)
 		VALUES
 		(
+		"'.$categoryID.'",
 		"'.$name.'",
 		"'.$uri.'",
 		"'.$method.'",
@@ -290,6 +304,24 @@ class Documentor extends General
 			
 			case 3:
 				return 'PUT';
+				break;
+			
+		}
+		
+	}
+	
+	public function optionalName($optional)
+	{
+		
+		switch($optional)
+		{
+			
+			case 0:
+				return 'Non-Optional';
+				break;
+			
+			case 1:
+				return 'Optional';
 				break;
 			
 		}

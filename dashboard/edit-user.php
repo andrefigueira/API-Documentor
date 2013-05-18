@@ -51,6 +51,8 @@
 		
 			<form id="save-user" class="inside-form" method="post">
 			
+				<input type="hidden" name="ID" id="ID" value="<?php echo $data['ID']; ?>" />
+			
 				<label for="username">Username</label>	
 				<input type="text" name="username" id="username" placeholder="e.g. phprulezwithacapitalp89" value="<?php echo $data['username']; ?>" autocomplete="off" />
 				
