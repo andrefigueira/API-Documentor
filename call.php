@@ -8,12 +8,16 @@
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://balupton.github.com/jquery-syntaxhighlighter/scripts/jquery.syntaxhighlighter.min.js"></script>
 	<script src="js/documentor.js"></script>
 	<script src="js/cfields/scripts/cFields.1.0.js"></script>
 	<script>
 	
 	$(document).ready(function(){
 		
+		$.SyntaxHighlighter.init({
+			lineNumbers: false
+		});
 		$('select').cFields({label:true});
 		$('input[type=checkbox]').cFields({label:true});
 		
@@ -57,7 +61,7 @@
 			
 			<div class="content-area">
 			
-				<p class="call-description">The call description goes here</p>
+				<p class="call-description"><?php echo $data['description']; ?></p>
 				
 				<h2>Method</h2>
 				<code class="call-method"><?php echo $doc->methodName($data['method']); ?></code>
@@ -98,19 +102,19 @@
 				<h2>Example Request</h2>
 				<table cellpadding="0" cellspacing="0" border="0" class="standard-table parameters-table">
 					<tr>
-						<td width="30%"><?php echo $doc->methodName($data['method']); ?></td>
-						<td><code class="call-url"><?php echo $data['uri']; ?></code></td>
+						<td valign="top" width="30%"><?php echo $doc->methodName($data['method']); ?></td>
+						<td valign="top"><code class="call-url"><?php echo $data['uri']; ?></code></td>
 					</tr>
 					<tr>
-						<td width="30%"><?php echo $doc->methodName($data['method']); ?> Data</td>
-						<td><code class="call-url"><?php echo $doc->exampleRequest($data['parameters']); ?></code></td>
+						<td valign="top" width="30%"><?php echo $doc->methodName($data['method']); ?> Data</td>
+						<td valign="top"><code class="call-url"><?php echo $doc->exampleRequest($data['parameters']); ?></code></td>
 					</tr>
 				</table>
 				
 				<?php if($data['response'] != ''){ ?>
 				
-					<div class="normal-label">Example Response</div>
-					<code class="example preview-example" id="response"><?php echo $data['response']; ?></code>
+					<h2>Example Response</h2>
+					<code class="example preview-example highlight" id="response"><?php echo $data['response']; ?></code>
 				
 				<?php } ?>
 			

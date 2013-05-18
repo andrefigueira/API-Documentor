@@ -1,7 +1,7 @@
 <input type="hidden" name="BASE_URL" id="BASE_URL" value="<?php echo BASE_URL; ?>" />
 	
 	<section id="sidebar">
-		<a class="logo" href="<?php echo BASE_URL; ?>home">API Documentor</a>
+		<a class="logo" href="<?php echo BASE_URL; ?>">API Documentor</a>
 		<?php
 		
 		$category = new Categories();

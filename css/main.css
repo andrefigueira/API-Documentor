@@ -260,6 +260,27 @@ form.login {
 					color: #FFF;
 					padding: 10px;
 				}
+				
+					#sidebar nav a.create {
+						background: url(images/create.png) no-repeat 8px 10px;
+						padding-left: 50px;
+						margin-bottom: 30px;
+					}
+				
+					#sidebar nav a.documentation {
+						background: url(images/documentation.png) no-repeat 8px 10px;
+						padding-left: 50px;
+					}
+				
+					#sidebar nav a.categories {
+						background: url(images/categories.png) no-repeat 8px 10px;
+						padding-left: 50px;
+					}
+				
+					#sidebar nav a.users {
+						background: url(images/users.png) no-repeat 8px 10px;
+						padding-left: 50px;
+					}
 	
 			#sidebar nav ul li ul {
 				display: block;
@@ -414,6 +435,8 @@ table.parameters-table {
 	display: inline-block;
 	font-family: Monaco;
 	font-size: 12px;
+	background: none!important;
+	border: none!important;
 }
 
 	.call-method {
@@ -527,8 +550,7 @@ code.example {
 	padding: 10px;
 	margin: 10px 0;
 	font-size: 13px;
-	min-height: 200px;
-	max-height: 400px;
+	height: auto;
 	overflow-y: scroll;
 	border: 1px solid #DDD;
 }
@@ -566,6 +588,8 @@ code.example {
 footer {
 	font-size: 11px;
 }
+
+.prettyprint ol.linenums li { border-left:none!important;}
 
 /* END MAIN STYLES */
 

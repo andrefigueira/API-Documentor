@@ -25,7 +25,7 @@ define('DEBUG', true);
 define('USERNAME', 'admin');
 define('PASSWORD', 'pass');
 
-//Db details
+//Db details YOUR MYSQL DETAILS HERE
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'APIDocumentor');
 define('DB_USER', 'APIDocumentorUse');

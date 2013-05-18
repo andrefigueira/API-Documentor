@@ -33,6 +33,7 @@ class Documentor extends General
 					'ID' => $row->ID,
 					'categoryID' => $row->categoryID,
 					'name' => stripslashes($row->name),
+					'description' => stripslashes($row->description),
 					'uri' => stripslashes($row->uri),
 					'method' => stripslashes($row->method),
 					'auth' => $row->auth,
@@ -77,6 +78,7 @@ class Documentor extends General
 					'ID' => $row->ID,
 					'categoryID' => $row->categoryID,
 					'name' => stripslashes($row->name),
+					'description' => stripslashes($row->description),
 					'uri' => stripslashes($row->uri),
 					'method' => stripslashes($row->method),
 					'auth' => $row->auth,
@@ -100,6 +102,7 @@ class Documentor extends General
 		$ID = $this->getVar('post', 'ID');
 		$categoryID = $this->getVar('post', 'categoryID');
 		$name = $this->getVar('post', 'name');
+		$description = $this->getVar('post', 'description');
 		$uri = $this->getVar('post', 'uri');
 		$method = $this->getVar('post', 'method');
 		$auth = $this->getVar('post', 'auth');
@@ -116,6 +119,7 @@ class Documentor extends General
 			'ID' => $ID,
 			'categoryID' => $categoryID,
 			'name' => $name,
+			'description' => $description,
 			'uri' => $uri,
 			'method' => $method,
 			'auth' => $auth,
@@ -134,6 +138,7 @@ class Documentor extends General
 		
 		$categoryID = $this->getVar('post', 'categoryID');
 		$name = $this->getVar('post', 'name');
+		$description = $this->getVar('post', 'description');
 		$uri = $this->getVar('post', 'uri');
 		$method = $this->getVar('post', 'method');
 		$auth = $this->getVar('post', 'auth');
@@ -148,6 +153,7 @@ class Documentor extends General
 		$this->create(array(
 			'categoryID' => $categoryID,
 			'name' => $name,
+			'description' => $description,
 			'uri' => $uri,
 			'method' => $method,
 			'auth' => $auth,
@@ -173,6 +179,7 @@ class Documentor extends General
 		SET
 		categoryID = "'.$categoryID.'",
 		name = "'.$name.'",
+		description = "'.$description.'",
 		uri = "'.$uri.'",
 		method = "'.$method.'",
 		auth = "'.$auth.'",
@@ -200,6 +207,7 @@ class Documentor extends General
 		(
 		categoryID,
 		name,
+		description,
 		uri, 
 		method,
 		auth,
@@ -211,6 +219,7 @@ class Documentor extends General
 		(
 		"'.$categoryID.'",
 		"'.$name.'",
+		"'.$description.'",
 		"'.$uri.'",
 		"'.$method.'",
 		"'.$auth.'",
@@ -250,7 +259,11 @@ class Documentor extends General
 		if(!empty($queryArray))
 		{
 			
-			return http_build_query($queryArray);
+			$query = http_build_query($queryArray);
+			
+			$query = str_replace('&', '<br>&', $query);
+			
+			return $query;
 			
 		}
 		

@@ -184,6 +184,7 @@ $(document).ready(function(){
 		var ID = getVal('ID', 'input');
 		var categoryID = getVal('categoryID', 'select');
 		var name = getVal('name', 'input');
+		var description = getVal('description', 'input');
 		var uri = getVal('uri', 'input');
 		var method = getVal('method', 'select');
 		var auth = getVal('auth', 'select');
@@ -210,6 +211,7 @@ $(document).ready(function(){
 				ID: ID,
 				categoryID: categoryID,
 				name: name,
+				description: description,
 				uri: uri,
 				method: method,
 				auth: auth,
@@ -247,6 +249,7 @@ $(document).ready(function(){
 		
 		var categoryID = getVal('categoryID', 'select');
 		var name = getVal('name', 'input');
+		var description = getVal('description', 'input');
 		var uri = getVal('uri', 'input');
 		var method = getVal('method', 'select');
 		var auth = getVal('auth', 'select');
@@ -272,6 +275,7 @@ $(document).ready(function(){
 			data: { 
 				categoryID: categoryID,
 				name: name,
+				description: description,
 				uri: uri,
 				method: method,
 				auth: auth,

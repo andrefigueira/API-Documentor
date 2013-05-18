@@ -46,6 +46,9 @@
 				<label for="name">Name</label>	
 				<input type="text" name="name" id="name" placeholder="e.g. getUsers" autocomplete="off" />
 				
+				<label for="description">Description</label>
+				<input type="text" name="description" id="description" placeholder="e.g. This call rocks the party" autocomplete="off" />
+				
 				<label for="uri">URI</label>
 				<input type="text" name="uri" id="uri" placeholder="e.g. https://mysite.com/api/get/users/" autocomplete="off" />
 				

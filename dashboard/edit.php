@@ -63,6 +63,9 @@
 				<label for="name">Name</label>	
 				<input type="text" name="name" id="name" placeholder="e.g. getUsers" value="<?php echo $data['name']; ?>" autocomplete="off" />
 				
+				<label for="description">Description</label>
+				<input type="text" name="description" id="description" placeholder="e.g. This call rocks the party" value="<?php echo $data['description']; ?>" autocomplete="off" />
+				
 				<label for="uri">URI</label>
 				<input type="text" name="uri" id="uri" placeholder="e.g. https://mysite.com/api/get/users/" value="<?php echo $data['uri']; ?>" autocomplete="off" />
 				
