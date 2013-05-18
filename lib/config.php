@@ -13,7 +13,7 @@ set_error_handler('errorHandler', E_ALL);
 date_default_timezone_set('Europe/London');
 
 //Base folder of the monitor
-define('BASE_URL', 'https://staging.hollatme.com/dashboard/api/');
+define('BASE_URL', 'http://www.yourwebsite.com/apidocs/');
 
 //Version of this monitoring thingy
 define('VERSION', '0.3');
