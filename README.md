@@ -3,6 +3,11 @@ API-Documentor
 
 New version of API Documentor.
 
+Licence
+==============
+
+http://creativecommons.org/licenses/by/3.0/
+
 Requirements
 ==============
 
