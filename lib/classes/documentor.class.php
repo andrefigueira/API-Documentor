@@ -36,7 +36,6 @@ class Documentor extends General
 					'uri' => stripslashes($row->uri),
 					'method' => stripslashes($row->method),
 					'auth' => $row->auth,
-					'request' => stripslashes($row->request),
 					'response' => stripslashes($row->response),
 					'addedDate' => $row->addedDate,
 					'editedDate' => $row->editedDate
@@ -82,7 +81,6 @@ class Documentor extends General
 					'method' => stripslashes($row->method),
 					'auth' => $row->auth,
 					'parameters' => $this->unserialize64($row->parameters),
-					'request' => stripslashes($row->request),
 					'response' => stripslashes($row->response),
 					'addedDate' => $row->addedDate,
 					'editedDate' => $row->editedDate
@@ -105,7 +103,6 @@ class Documentor extends General
 		$uri = $this->getVar('post', 'uri');
 		$method = $this->getVar('post', 'method');
 		$auth = $this->getVar('post', 'auth');
-		$request = $this->getVar('post', 'request');
 		$response = $this->getVar('post', 'response');
 		$parameters = $this->getVar('post', 'parameters', false);
 
@@ -122,7 +119,6 @@ class Documentor extends General
 			'uri' => $uri,
 			'method' => $method,
 			'auth' => $auth,
-			'request' => $request,
 			'response' => $response,
 			'parameters' => $parameters
 		));
@@ -141,7 +137,6 @@ class Documentor extends General
 		$uri = $this->getVar('post', 'uri');
 		$method = $this->getVar('post', 'method');
 		$auth = $this->getVar('post', 'auth');
-		$request = $this->getVar('post', 'request');
 		$response = $this->getVar('post', 'response');
 		$parameters = $this->getVar('post', 'parameters', false);
 
@@ -156,7 +151,6 @@ class Documentor extends General
 			'uri' => $uri,
 			'method' => $method,
 			'auth' => $auth,
-			'request' => $request,
 			'response' => $response,
 			'parameters' => $parameters
 		));
@@ -182,7 +176,6 @@ class Documentor extends General
 		uri = "'.$uri.'",
 		method = "'.$method.'",
 		auth = "'.$auth.'",
-		request = "'.$request.'",
 		response = "'.$response.'",
 		parameters = "'.$this->serialize64($parameters).'",
 		editedDate = "'.$this->datetime().'"
@@ -210,7 +203,6 @@ class Documentor extends General
 		uri, 
 		method,
 		auth,
-		request,
 		response,
 		parameters,
 		addedDate
@@ -222,7 +214,6 @@ class Documentor extends General
 		"'.$uri.'",
 		"'.$method.'",
 		"'.$auth.'",
-		"'.$request.'",
 		"'.$response.'",
 		"'.$this->serialize64($parameters).'",
 		"'.$this->datetime().'"
@@ -230,6 +221,38 @@ class Documentor extends General
 		');
 		
 		$this->handleResult($result);
+		
+	}
+	
+	public function exampleRequest($data)
+	{
+	
+		$queryStr = '';
+		$queryArray = array();
+		
+		if(count($data) > 0)
+		{
+		
+			foreach($data as $parameter)
+			{
+			
+				if(!(bool)$parameter['optional'])
+				{
+					
+					$queryArray[$parameter['name']] = $parameter['example'];
+					
+				}
+			
+			}
+		
+		}
+		
+		if(!empty($queryArray))
+		{
+			
+			return http_build_query($queryArray);
+			
+		}
 		
 	}
 	

@@ -110,9 +110,6 @@
 				
 				<input type="button" id="add-parameter" name="add-parameter" value="Add Parameter" />
 				
-				<div class="normal-label">Example Request</div>
-				<code contenteditable="true" class="example" id="request"></code>
-				
 				<div class="normal-label">Example Response</div>
 				<code contenteditable="true" class="example" id="response"></code>
 				

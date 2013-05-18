@@ -95,12 +95,17 @@
 					
 				<?php }?>
 				
-				<?php if($data['request'] != ''){ ?>
-				
-					<div class="normal-label">Example Request</div>
-					<code class="example preview-example" id="request"><?php echo $data['request']; ?></code>
-					
-				<?php } ?>
+				<h2>Example Request</h2>
+				<table cellpadding="0" cellspacing="0" border="0" class="standard-table parameters-table">
+					<tr>
+						<td width="30%"><?php echo $doc->methodName($data['method']); ?></td>
+						<td><code class="call-url"><?php echo $data['uri']; ?></code></td>
+					</tr>
+					<tr>
+						<td width="30%"><?php echo $doc->methodName($data['method']); ?> Data</td>
+						<td><code class="call-url"><?php echo $doc->exampleRequest($data['parameters']); ?></code></td>
+					</tr>
+				</table>
 				
 				<?php if($data['response'] != ''){ ?>
 				

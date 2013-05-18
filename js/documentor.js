@@ -187,7 +187,6 @@ $(document).ready(function(){
 		var uri = getVal('uri', 'input');
 		var method = getVal('method', 'select');
 		var auth = getVal('auth', 'select');
-		var request = getVal('request', 'html');
 		var response = getVal('response', 'html');
 		var parameters = [];
 		
@@ -214,7 +213,6 @@ $(document).ready(function(){
 				uri: uri,
 				method: method,
 				auth: auth,
-				request: request,
 				response: response,
 				parameters: parameters
 			},
@@ -252,7 +250,6 @@ $(document).ready(function(){
 		var uri = getVal('uri', 'input');
 		var method = getVal('method', 'select');
 		var auth = getVal('auth', 'select');
-		var request = getVal('request', 'html');
 		var response = getVal('response', 'html');
 		var parameters = [];
 		
@@ -278,7 +275,6 @@ $(document).ready(function(){
 				uri: uri,
 				method: method,
 				auth: auth,
-				request: request,
 				response: response,
 				parameters: parameters
 			},

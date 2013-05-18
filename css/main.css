@@ -284,6 +284,8 @@ form.login {
 						padding: 10px;
 						font-size: 12px;
 					}
+	
+					#sidebar nav ul li ul li a:hover { color: #3F96D9;}
 
 	#sidebar footer {
 		color: #FFF;

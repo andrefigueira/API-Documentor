@@ -156,9 +156,6 @@
 				
 				<input type="button" id="add-parameter" name="add-parameter" value="Add Parameter" />
 				
-				<div class="normal-label">Example Request</div>
-				<code contenteditable="true" class="example" id="request"><?php echo $data['request']; ?></code>
-				
 				<div class="normal-label">Example Response</div>
 				<code contenteditable="true" class="example" id="response"><?php echo $data['response']; ?></code>
 				
