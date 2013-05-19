@@ -40,44 +40,6 @@ class Categories extends General
 		return $results;
 			
 	}
-	
-	public function fetchCategory()
-	{
-	
-		$ID = $this->getVar('get', 'ID');
-
-		$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-		
-		$result = $db->query('
-		SELECT *
-		FROM categories
-		WHERE ID = "'.$ID.'"
-		LIMIT 1
-		');
-		
-		$totalRows = $result->num_rows;
-		
-		$results = array();
-		
-		if($totalRows > 0)
-		{
-		
-			while($row = $result->fetch_object())
-			{
-			
-				$results = array(
-					'ID' => $row->ID,
-					'name' => stripslashes($row->name),
-					'description' => stripslashes($row->description)
-				);
-			
-			}
-		
-		}
-		
-		return $results;
-		
-	}
 
 	public function categoryExists()
 	{
@@ -194,27 +156,11 @@ class Categories extends General
 		if(!is_numeric($ID)){ $this->jsonReply(false, 'Oh no you don\'t!');}
 		if($ID == 0){ $this->jsonReply(false, 'Sorry you can\'t delete that category');}
 		
-		$this->delete($ID);
+		$this->delete($ID, 'categories');
 		
 		$this->jsonReply(true, 'Category deleted');
 		
 		$this->setNotification('Deleted category');
-		
-	}
-	
-	private function delete($ID)
-	{
-
-		$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-		
-		$result = $db->query('
-		DELETE FROM categories
-		WHERE ID = "'.$ID.'"
-		');
-		
-		$this->handleResult($result);
-		
-		return true;
 		
 	}
 

@@ -1,27 +1,7 @@
 <?php require_once('../lib/functions.php'); General::validateSession(); ?>
 <!DOCTYPE html>
 <html>
-<head>
-	<title>API Documentor</title>
-	<base href="<?php echo BASE_URL; ?>" />
-	<link href="css/main.css" rel="stylesheet" type="text/css" />
-	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<script src="js/documentor.js"></script>
-	<script src="js/cfields/scripts/cFields.1.0.js"></script>
-	<script>
-	
-	$(document).ready(function(){
-	
-		$('select').cFields({label:true});
-		
-		$('input[type=checkbox]').cFields({label:true});
-		
-	});
-	
-	</script>
-</head>
+<?php require_once('../lib/includes/admin-header.php'); ?>
 <body>
 
 	<?php 
@@ -30,7 +10,24 @@
 	
 	$doc = new Documentor();
 	
-	$data = $doc->fetchDocumentation();
+	$data = $doc->fetchRow(array(
+		'table' => 'calls',
+		'ID' => true,
+		'fields' => array(
+			'ID',
+			'name',
+			'description',
+			'uri',
+			'method',
+			'categoryID',
+			'parameters',
+			'response',
+			'auth'
+		),
+		'sql' => 'LIMIT 1'
+	));
+	
+	$data['parameters'] = $doc->unserialize64($data['parameters']);
 	
 	if($data['parameters'] == ''){ $data['parameters'] = array();}
 		

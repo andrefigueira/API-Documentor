@@ -145,5 +145,88 @@ class General
 		return date('D jS F, Y', strtotime($date));
 		
 	}
+	
+	public function delete($ID, $table)
+	{
+
+		$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+		
+		$result = $db->query('
+		DELETE FROM '.$table.'
+		WHERE ID = "'.$ID.'"
+		');
+		
+		$this->handleResult($result);
+		
+	}
+	
+	public function serialize64($array)
+	{
+		
+		$array = serialize($array);
+		$array = base64_encode($array);
+		
+		return $array;
+		
+	}
+	
+	public function unserialize64($array)
+	{
+		
+		$array = base64_decode($array);
+		$array = unserialize($array);
+		
+		return $array;
+		
+	}
+	
+	public function fetchRow($parameters)
+	{
+	
+		$addSql = '';
+	
+		if(isset($parameters['ID']))
+		{ 
+			
+			$ID = $this->getVar('get', 'ID');
+			
+			$addSql .= 'WHERE ID = "'.$ID.'"';
+			
+		}
+
+		$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+		
+		if(isset($parameters['sql'])){ $addSql .= $parameters['sql'];}
+		
+		$result = $db->query('
+		SELECT '.implode(',', $parameters['fields']).'
+		FROM '.$parameters['table'].'
+		'.$addSql.'
+		');
+		
+		$totalRows = $result->num_rows;
+		
+		$results = array();
+		
+		if($totalRows > 0)
+		{
+		
+			while($row = $result->fetch_object())
+			{
+			
+				foreach($parameters['fields'] as $field)
+				{
+				
+					$results[$field] = stripslashes($row->$field);
+					
+				}
+			
+			}
+		
+		}
+		
+		return $results;
+		
+	}
 
 }

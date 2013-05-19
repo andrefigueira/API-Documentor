@@ -33,7 +33,24 @@
 	
 	$doc = new Documentor();
 	
-	$data = $doc->fetchDocumentation();
+	$data = $doc->fetchRow(array(
+		'table' => 'calls',
+		'ID' => true,
+		'fields' => array(
+			'ID',
+			'name',
+			'description',
+			'uri',
+			'method',
+			'categoryID',
+			'parameters',
+			'response',
+			'auth'
+		),
+		'sql' => 'LIMIT 1'
+	));
+	
+	$data['parameters'] = $doc->unserialize64($data['parameters']);
 	
 	if(!empty($data) && $data['parameters'] == ''){ $data['parameters'] = array();}
 		

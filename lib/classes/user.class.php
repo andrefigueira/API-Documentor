@@ -43,44 +43,6 @@ class User extends General
 			
 	}
 	
-	public function fetchUser()
-	{
-	
-		$ID = $this->getVar('get', 'ID');
-
-		$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-		
-		$result = $db->query('
-		SELECT *
-		FROM users
-		WHERE ID = "'.$ID.'"
-		LIMIT 1
-		');
-		
-		$totalRows = $result->num_rows;
-		
-		$results = array();
-		
-		if($totalRows > 0)
-		{
-		
-			while($row = $result->fetch_object())
-			{
-			
-				$results = array(
-					'ID' => $row->ID,
-					'username' => stripslashes($row->username),
-					'email' => stripslashes($row->email)
-				);
-			
-			}
-		
-		}
-		
-		return $results;
-		
-	}
-	
 	public function logout()
 	{
 		
@@ -291,27 +253,11 @@ class User extends General
 		
 		if(!is_numeric($ID)){ $this->jsonReply(false, 'Oh no you don\'t!');}
 		
-		$this->delete($ID);
+		$this->delete($ID, 'users');
 		
 		$this->jsonReply(true, 'User deleted');
 		
 		$this->setNotification('User documentation');
-		
-	}
-	
-	private function delete($ID)
-	{
-
-		$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-		
-		$result = $db->query('
-		DELETE FROM users
-		WHERE ID = "'.$ID.'"
-		');
-		
-		$this->handleResult($result);
-		
-		return true;
 		
 	}
 

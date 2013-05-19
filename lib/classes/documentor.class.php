@@ -50,52 +50,6 @@ class Documentor extends General
 			
 	}
 	
-	public function fetchDocumentation()
-	{
-	
-		$ID = $this->getVar('get', 'ID');
-
-		$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-		
-		$result = $db->query('
-		SELECT *
-		FROM calls
-		WHERE ID = "'.$ID.'"
-		LIMIT 1
-		');
-		
-		$totalRows = $result->num_rows;
-		
-		$results = array();
-		
-		if($totalRows > 0)
-		{
-		
-			while($row = $result->fetch_object())
-			{
-			
-				$results = array(
-					'ID' => $row->ID,
-					'categoryID' => $row->categoryID,
-					'name' => stripslashes($row->name),
-					'description' => stripslashes($row->description),
-					'uri' => stripslashes($row->uri),
-					'method' => stripslashes($row->method),
-					'auth' => $row->auth,
-					'parameters' => $this->unserialize64($row->parameters),
-					'response' => stripslashes($row->response),
-					'addedDate' => $row->addedDate,
-					'editedDate' => $row->editedDate
-				);
-			
-			}
-		
-		}
-		
-		return $results;
-		
-	}
-	
 	public function saveDocumentation()
 	{
 		
@@ -269,42 +223,6 @@ class Documentor extends General
 		
 	}
 	
-	public function serialize64($array)
-	{
-		
-		$array = serialize($array);
-		$array = base64_encode($array);
-		
-		return $array;
-		
-	}
-	
-	public function unserialize64($array)
-	{
-		
-		$array = base64_decode($array);
-		$array = unserialize($array);
-		
-		return $array;
-		
-	}
-	
-	private function delete($ID)
-	{
-
-		$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-		
-		$result = $db->query('
-		DELETE FROM calls
-		WHERE ID = "'.$ID.'"
-		');
-		
-		$this->handleResult($result);
-		
-		return true;
-		
-	}
-	
 	public function deleteDocumentation()
 	{
 	
@@ -312,7 +230,7 @@ class Documentor extends General
 		
 		if(!is_numeric($ID)){ $this->jsonReply(false, 'Oh no you don\'t!');}
 		
-		$this->delete($ID);
+		$this->delete($ID, 'calls');
 		
 		$this->jsonReply(true, 'Documentation deleted');
 		
