@@ -473,6 +473,8 @@ table.parameters-table {
    transition:opacity 0.2s ease-in;
 }
 
+	.test-button { background: #80C579; float: none; margin: 0;}
+
 	.button:hover { opacity:1;}
 
 	.button.delete, .button.delete-user, .button.delete-category  {
@@ -538,6 +540,8 @@ table.parameters-table {
 	border: none!important;
 	background: #F8F8F8!important;
 }
+
+	.preview-example:empty { display: none;}
 
 .normal-label { margin: 10px 0 0 0;}
 
@@ -684,3 +688,6 @@ a.cFieldFile {
 		font-size:13px;
 		margin:0 0 0 10px;
 	}
+	
+	
+.rest-results { display: none;}

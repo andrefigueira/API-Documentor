@@ -214,3 +214,87 @@ function errorHandler($num, $str, $file, $line, $context)
 	';
 
 }
+
+function testCall()
+{
+
+	$gen = new General();
+	
+	$method = $_POST['method'];
+	$url = $_POST['url'];
+	$parameters = $_POST['parameters'];
+	
+	if($method == ''){ $gen->jsonReply(false, 'No method passed');}
+	if($url == ''){ $gen->jsonReply(false, 'No URL passed');}
+	
+	if($method == 'POST'){ $post = 1;}else{ $post = 0;}
+	
+	$fields = array();
+	
+	foreach($parameters as $parameter)
+	{
+		
+		$fields[$parameter['ID']] = $parameter['value'];
+		
+	}
+	
+	$curl = curl_init();
+	
+	curl_setopt_array($curl, array(
+	    CURLOPT_RETURNTRANSFER => 1,
+	    CURLOPT_URL => $url,
+	    CURLOPT_HTTPHEADER => array('Expect:'),
+	    CURLOPT_HEADER => true,
+	    CURLOPT_NOBODY => true,
+	    CURLOPT_SSL_VERIFYPEER => false,
+	    CURLOPT_SSL_VERIFYHOST => false,
+	    CURLOPT_USERAGENT => 'API Documentor REST Tester',
+	    CURLOPT_POST => 1,
+	    CURLOPT_POSTFIELDS => $fields
+	));
+	
+	$headers = curl_exec($curl);
+	
+	curl_setopt_array($curl, array(
+	    CURLOPT_RETURNTRANSFER => 1,
+	    CURLOPT_URL => $url,
+	    CURLOPT_HTTPHEADER => array('Expect:'),
+	    CURLOPT_HEADER => false,
+	    CURLOPT_NOBODY => false,
+	    CURLOPT_SSL_VERIFYPEER => false,
+	    CURLOPT_SSL_VERIFYHOST => false,
+	    CURLOPT_USERAGENT => 'API Documentor REST Tester',
+	    CURLOPT_POST => 1,
+	    CURLOPT_POSTFIELDS => $fields
+	));
+	
+	$body = curl_exec($curl);
+	
+	if(!$headers)
+	{
+	
+    	$resp = '
+    	<h1>cURL Error: '.curl_errno($curl).'</h1> 
+    	'.curl_error($curl);
+	
+		//Close request to clear up some resources
+		curl_close($curl);
+	
+		$gen->jsonReply(false, $resp);
+    	
+	}
+	else
+	{
+	
+		curl_close($curl);
+		
+		$headers = str_replace($body, '', $headers);
+	
+		$gen->jsonReply(true, array(
+			'headers' => $headers,
+			'body' => $body
+		));
+		
+	}
+
+}

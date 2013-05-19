@@ -473,6 +473,65 @@ $(document).ready(function(){
 	
 	});
 	
+	$('#rest-tester').submit(function(e){
+	
+		e.preventDefault();
+	
+		var ajaxURL = BASE_URL + 'request/testCall/';
+		
+		var parameters = [];
+		var method = $('.call-method').html();
+		var url = $('.call-url').html();
+		
+		$('.input-parameter').each(function(index){
+			
+			parameters.push({
+				ID: $(this).attr('id'),
+				value: $(this).val()
+			});
+			
+		});
+		
+		$.ajax({
+ 			type: 'POST',
+			url: ajaxURL,
+			data: {
+				method: method,
+				url: url,
+				parameters: parameters
+			},
+			dataType: 'json',
+			success: function(data){
+			
+				if(data.success)
+				{
+				
+					$('.rest-headers').html(data.message.headers);
+					
+					$('.rest-body').text(data.message.body);
+					
+					if($('.rest-results').is(':hidden'))
+					{
+					
+						$('.rest-results').slideDown();
+						
+					}
+					
+				}
+				else
+				{
+				
+					$('.rest-error').html(data.message);
+					
+				}
+			
+			}
+		});
+		
+    	return false;
+	
+	});
+	
 });
 
 function alert(message)

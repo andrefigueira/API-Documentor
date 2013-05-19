@@ -18,6 +18,7 @@
 		$.SyntaxHighlighter.init({
 			lineNumbers: false
 		});
+		
 		$('select').cFields({label:true});
 		$('input[type=checkbox]').cFields({label:true});
 		
@@ -138,6 +139,8 @@
 			</div><!-- End content area -->
 		
 		<?php } ?>
+		
+		<a href="test/<?php echo $data['ID']; ?>" class="button test-button">Test Call</a>
 		
 		</section>
 		
