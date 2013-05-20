@@ -46,7 +46,8 @@
 			'categoryID',
 			'parameters',
 			'response',
-			'auth'
+			'auth',
+			'editedDate'
 		),
 		'sql' => 'LIMIT 1'
 	));
@@ -129,7 +130,7 @@
 					</tr>
 				</table>
 				
-				<?php if($data['response'] != ''){ ?>
+				<?php if(trim(strip_tags($data['response'])) != ''){ ?>
 				
 					<h2>Example Response</h2>
 					<code class="example preview-example highlight" id="response"><?php echo $data['response']; ?></code>
