@@ -195,12 +195,17 @@ $(document).ready(function(){
 		
 			var parameterPrefix = 'parameter-' + index + '-';
 			
-			parameters.push({
-				name: getVal(parameterPrefix + 'name', 'input'),
-				example: getVal(parameterPrefix + 'example', 'input'),
-				description: getVal(parameterPrefix + 'description', 'input'),
-				optional: Number(getVal(parameterPrefix + 'optional', 'select'))
-			});
+			if(getVal(parameterPrefix + 'name', 'input') != '')
+			{
+			
+				parameters.push({
+					name: getVal(parameterPrefix + 'name', 'input'),
+					example: getVal(parameterPrefix + 'example', 'input'),
+					description: getVal(parameterPrefix + 'description', 'input'),
+					optional: Number(getVal(parameterPrefix + 'optional', 'select'))
+				});
+			
+			}
 			
 		});
 		
@@ -260,12 +265,17 @@ $(document).ready(function(){
 		
 			var parameterPrefix = 'parameter-' + index + '-';
 			
-			parameters.push({
-				name: getVal(parameterPrefix + 'name', 'input'),
-				example: getVal(parameterPrefix + 'example', 'input'),
-				description: getVal(parameterPrefix + 'description', 'input'),
-				optional: Number(getVal(parameterPrefix + 'optional', 'select'))
-			});
+			if(getVal(parameterPrefix + 'name', 'input') != '')
+			{
+			
+				parameters.push({
+					name: getVal(parameterPrefix + 'name', 'input'),
+					example: getVal(parameterPrefix + 'example', 'input'),
+					description: getVal(parameterPrefix + 'description', 'input'),
+					optional: Number(getVal(parameterPrefix + 'optional', 'select'))
+				});
+			
+			}
 			
 		});
 		

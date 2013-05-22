@@ -242,6 +242,8 @@ form.login {
 	#sidebar nav {
 		display: block;
 		height: 500px;
+		max-height: 800px;
+		overflow-y: scroll;
 	}
 	
 		#sidebar nav ul {

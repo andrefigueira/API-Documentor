@@ -10,15 +10,15 @@ class General
 		{
 			
 			case 'post':
-				if(isset($_POST[$key])){ $val = $_POST[$key];}else{ $val = false;}
+				if(isset($_POST[$key])){ $val = General::sanitize($_POST[$key]);}else{ $val = false;}
 				break;
 				
 			case 'get':
-				if(isset($_GET[$key])){ $val = $_GET[$key];}else{ $val = false;}
+				if(isset($_GET[$key])){ $val = General::sanitize($_GET[$key]);}else{ $val = false;}
 				break;
 				
 			case 'request':
-				if(isset($_REQUEST[$key])){ $val = $_REQUEST[$key];}else{ $val = false;}
+				if(isset($_REQUEST[$key])){ $val = General::sanitize($_REQUEST[$key]);}else{ $val = false;}
 				break;
 				
 			default:
@@ -29,6 +29,20 @@ class General
 		if($sanitize){ addslashes($val);}
 		
 		return $val;
+		
+	}
+	
+	public function sanitize($input)
+	{
+	
+		if(is_string($input))
+		{
+		
+			$input = addslashes($input);
+			
+		}
+		
+		return $input;
 		
 	}
 	
